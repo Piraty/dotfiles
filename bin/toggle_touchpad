@@ -1,0 +1,24 @@
+#!/bin/sh
+# toggle touchpad state
+
+. "$HOME"/bin/lib.sh
+
+ICON="input-touchpad"
+TITLE="Touchpad"
+
+[ ! $(command -v xinput 2>/dev/null) ] && failmsg "xinput not found"
+DEVICENAME=$(xinput --list --name-only | grep -i "touchpad")
+[ -z "$DEVICENAME" ] && failmsg "ERROR: no touchpad found"
+
+STATE=$(xinput list-props "$DEVICENAME" | grep -i "device enabled" | awk '{print $4}')
+
+if [ $STATE -eq 1 ]; then
+	xinput disable "$DEVICENAME"
+	msg="Disabled"
+	ICON="touchpad-disabled-symbolic"
+else
+	xinput enable "$DEVICENAME"
+	msg="Enabled"
+	ICON="touchpad-enabled-symbolic"
+fi
+notify "$TITLE" "$msg" "$ICON"

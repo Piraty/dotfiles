@@ -1,0 +1,4 @@
+#!/bin/sh
+# attach the the last session or create a new one
+
+tmux a || tmux

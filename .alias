@@ -1,0 +1,143 @@
+## alias file
+
+# -------------------------------------------------------------------
+# Dotfiles mangement
+# -------------------------------------------------------------------
+alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
+
+
+# -------------------------------------------------------------------
+# basic commands
+# -------------------------------------------------------------------
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto -u'
+
+
+# -------------------------------------------------------------------
+# system administration
+# -------------------------------------------------------------------
+alias chmod='chmod -c --preserve-root'
+alias chown='chown -c --preserve-root'
+alias chgrp='chgrp -c --preserve-root'
+
+
+# -------------------------------------------------------------------
+# directory movement
+# -------------------------------------------------------------------
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias back='cd $OLDPWD'
+
+
+# -------------------------------------------------------------------
+# directory information
+# -------------------------------------------------------------------
+alias ls='ls --color=auto'
+alias sl='ls'
+alias l='ls'
+alias lh='ls -d .*'
+alias lsd='ls -aFhlG'
+alias ll='ls -lA --color=auto'
+alias llh='ls -lA -d .*'
+alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+alias lsdu='du -sckxh * | sort -nr' #directories sorted by size
+alias filecount='find . -type f | wc -l' # number of files (not directories)
+
+
+# -------------------------------------------------------------------
+# Git
+# -------------------------------------------------------------------
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
+alias glp="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gs='git status'
+alias gd='git diff'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gca='git commit --amend'
+alias gcan='git commit --amend --no-edit'
+alias gb='git branch'
+alias gc='git checkout'
+alias gcb='git checkout -b'
+#alias gra='git remote add'
+#alias grr='git remote rm'
+alias grv='git remote -v'
+alias gpu='git pull'
+alias gcl='git clone'
+alias gta='git tag -a -m'
+alias gf='git reflog'
+alias gv='git log --pretty=format:'%s' | cut -d " " -f 1 | sort | uniq -c | sort -nr'
+alias gri='git rebase -i --autostash --autosquash'
+
+# curiosities 
+# gsh shows the number of commits for the current repos for all developers
+alias gsh="git shortlog | grep -E '^[ ]+\w+' | wc -l"
+# gu shows a list of all developers and the number of commits they've made
+alias gu="git shortlog | grep -E '^[^ ]'"
+
+
+# -------------------------------------------------------------------
+# Python
+# -------------------------------------------------------------------
+# pip
+alias pipi2='pip2 install --user'
+alias pipi3='pip3 install --user'
+alias pipi='pipi3'
+# virtual env
+
+
+# -------------------------------------------------------------------
+# network
+# -------------------------------------------------------------------
+alias myip='curl ifconfig.co'
+alias ping1='ping -c 4 1.1.1.1'
+alias ping8='ping -c 4 8.8.8.8'
+alias ping9='ping -c 4 9.9.9.9'
+
+
+# -------------------------------------------------------------------
+# system helpers
+# -------------------------------------------------------------------
+alias priv='doas'
+alias reboot='priv reboot'
+alias poweroff='priv poweroff'
+alias watchThermal='watch -t -d -n 1 cat /sys/devices/virtual/thermal/thermal_zone*/temp'
+
+
+# -------------------------------------------------------------------
+# XBPS
+# -------------------------------------------------------------------
+alias xi='priv xi'
+alias xup='xi -Su'
+alias xr='priv xbps-remove -R'
+alias xq='xbps-query' #attention: shadows xtools/xq
+alias xx='nice -n 10 ./xbps-src'
+
+# list packages on the system that have updates upstream
+alias listOutdated='curl -s https://repo.voidlinux.eu/void-updates/void-updates.txt > /tmp/updates.tmp && grep -i ".* .*->.*" /tmp/updates.tmp | cut -d " " -f1 | sort | uniq > /tmp/updates && xpkg | sort > /tmp/localpkgs && comm -1 -2 /tmp/updates /tmp/localpkgs | sort'
+
+# -------------------------------------------------------------------
+# paste services
+# -------------------------------------------------------------------
+alias termbin='nc termbin.com 9999' #http://termbin.com
+
+
+# -------------------------------------------------------------------
+# misc
+# -------------------------------------------------------------------
+alias tmux='tmux -u'
+alias tmuxinit='tmux a || tmux'
+alias e='vim'
+alias v='vim'
+alias vi='vim'
+alias pdf='zathura'
+alias svim='sudo vim'
+alias todo='vim Todo/todo.txt'
+
+# run an iso quickly with "qemu -cd <iso>"
+alias qemu='qemu-system-x86_64 -m 256 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -cpu host -boot order=d '

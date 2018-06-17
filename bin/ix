@@ -1,0 +1,7 @@
+#!/bin/sh
+# paste to http://ix.io
+
+# don't run interactively
+[ -t 0 ] && return
+
+curl -F f:1='<-' $* http://ix.io/

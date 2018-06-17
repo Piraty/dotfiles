@@ -1,0 +1,30 @@
+#!/bin/sh
+# toggle auto screen blanking
+
+. $HOME/bin/lib.sh
+
+ICON=""
+TITLE="Screen blanking"
+STATUSFILE=/tmp/xset-dpms.status
+
+[ ! $(command -v xset 2>/dev/null) ] && failmsg "xset not found"
+
+STATE=1
+[ -r "$STATUSFILE" ] && STATE=$(cat "$STATUSFILE" 2>/dev/null)
+
+if [ $STATE -eq 1 ]; then
+	xset s off -dpms
+	msg="Disabled"
+	ICON="checkbox-symbolic"
+	STATE=0
+else
+	xset s on +dpms
+	msg="Enabled"
+	ICON="checkbox-checked-symbolic"
+	STATE=1
+fi
+
+touch "$STATUSFILE" 2>/dev/null
+[ -w "$STATUSFILE" ] && echo "$STATE" > "$STATUSFILE" || failmsg "could not write to $STATUSFILE"
+
+notify "$TITLE" "$msg" "$ICON"

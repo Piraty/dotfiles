@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# run your window manager from here
+
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
+
+setWallpaper() {
+	# background color (fallback)
+	[ $(command -v xsetroot 2>/dev/null) ] && xsetroot -solid "#000000"
+	# background image
+	if [ $(command -v feh 2>/dev/null) ]; then
+		feh --bg-fill --no-fehbg ~/.wallpaper/default || \
+		feh --recursive --randomize --bg-fill --no-fehbg ~/.wallpaper || \
+		echo "found no wallpapers"
+	fi
+}
+
+[ $(command -v xrdb 2>/dev/null) ] && xrdb -merge -I$HOME ~/.Xresources
+[ $(command -v setxkbmap 2>/dev/null) ] && setxkbmap de
+[ $(command -v numlockx 2>/dev/null) ] && numlockx
+[ $(command -v amixer 2>/dev/null) ] && amixer -q set Master 0% unmute
+
+session=${1:-i3}
+
+case "$session" in
+    i3) 
+	#export QT_QPA_PLATFORMTHEME=gtk2
+	export QT_STYLE_OVERRIDE=gtk2
+	export DE="xfce"
+	setWallpaper
+	#exec i3 
+	exec dbus-launch --exit-with-x11 ck-launch-session i3
+	;;
+    plasma) exec plasma-desktop ;;
+    xfce|xfce4) exec startxfce4 ;;
+
+    # No known session, try to run it as a command
+    *) exec "$@" ;;
+esac

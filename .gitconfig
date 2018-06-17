@@ -1,0 +1,9 @@
+[core]
+	editor = vim
+[alias]
+	pullUpstream = pull upstream master --rebase --autostash
+	graph = log --graph --decorate --oneline
+[gui]
+	warndetachedcommit = true
+	spellingdictionary = none
+	tabsize = 4

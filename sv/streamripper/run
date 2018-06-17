@@ -1,0 +1,22 @@
+#!/bin/sh
+# rip shoutcast streams
+
+basedir="$HOME/Music/streams"
+useragent="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36"
+readonly defOpts="-r -z" #-r = relay, -z = don't scan ports
+
+url=
+station=
+opts=
+
+[ -r ./conf ] && . ./conf
+
+if [ -n "$url" ]; then
+	streamdir="${basedir}/${station}"
+
+	if [ ! -d "$streamdir" ]; then
+		mkdir -p "$streamdir" || exit 1
+	fi
+
+	streamripper "$url" -u "$useragent" $defOpts $opts -d "$streamdir"
+fi
