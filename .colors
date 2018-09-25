@@ -1,0 +1,23 @@
+# store some ANSI control sequences
+# encapsulate with \[ .. \] to preserve prompt correctnes
+#
+
+RESTORE='\[\e[0m\]'
+
+BOLD='\[\e[1m\]'
+
+RED='\[\e[00;31m\]'
+GREEN='\[\e[00;32m\]'
+YELLOW='\[\e[00;33m\]'
+BLUE='\[\e[00;34m\]'
+PURPLE='\[\e[00;35m\]'
+CYAN='\[\e[00;36m\]'
+LIGHTGRAY='\[\e[00;37m\]'
+
+LRED='\[\e[01;31m\]'
+LGREEN='\[\e[01;32m\]'
+LYELLOW='\[\e[01;33m\]'
+LBLUE='\[\e[01;34m\]'
+LPURPLE='\[\e[01;35m\]'
+LCYAN='\[\e[01;36m\]'
+WHITE='\[\e[01;37m\]'
