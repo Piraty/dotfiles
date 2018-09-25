@@ -6,7 +6,7 @@ based on: https://news.ycombinator.com/item?id=11070797
 ```
 #clone + setup
 USER=Piraty
-git clone --separate-git-dir=$HOME/.dotfiles https://github.com/${USER}/dotfiles.git $HOME/myconf-tmp
+git clone --separate-git-dir=$HOME/.dotfiles.git https://github.com/${USER}/dotfiles.git $HOME/myconf-tmp
 rm -r ~/myconf-tmp/
 alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 dotfiles config status.showUntrackedFiles no
