@@ -19,6 +19,7 @@ for file in $files; do
 	[ -r "$file" ] && . "$file" || echo "$file could not be sourced ($?)"
 done
 
+# fail silently if personal files are missing
 files=("$HOME/.alias_personal")
 for file in $files; do
 	[ -r "$file" ] && . "$file"

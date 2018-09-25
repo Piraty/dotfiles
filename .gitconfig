@@ -1,6 +1,7 @@
 [core]
 	editor = vim
 [alias]
+	s = status
 	pullUpstream = pull upstream master --rebase --autostash
 	graph = log --graph --decorate --oneline
 [gui]

@@ -41,8 +41,8 @@ alias sl='ls'
 alias l='ls'
 alias lh='ls -d .*'
 alias lsd='ls -aFhlG'
-alias ll='ls -lA --color=auto'
-alias llh='ls -lA -d .*'
+alias ll='ls -lA -h'
+alias llh='ll -d .*'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias lsdu='du -sckxh * | sort -nr' #directories sorted by size
 alias filecount='find . -type f | wc -l' # number of files (not directories)
@@ -56,6 +56,7 @@ alias gp='git push'
 alias gl='git log'
 alias glp="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs='git status'
+alias gss='git status -sb'
 alias gd='git diff'
 alias gm='git commit -m'
 alias gma='git commit -am'
