@@ -1,3 +1,10 @@
+# zsh cvs aware prompt modifications
+# roughly based on stuff I cannot really remember the origin of
+# probably needs an overhaul / modularization for other shells
+
+#setopt promptsubst
+autoload -U colors && colors # Enable colors in prompt
+
 function virtualenv_info {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
@@ -5,19 +12,13 @@ function virtualenv_info {
 function prompt_char {
     git branch >/dev/null 2>/dev/null && echo '±' && return
     hg root >/dev/null 2>/dev/null && echo '☿' && return
+	svn info > /dev/null 2>/dev/null && echo '⌘' && return
     echo '○'
 }
 
 function box_name {
     [ -f ~/.box-name ] && cat ~/.box-name || hostname
 }
-
-# http://blog.joshdick.net/2012/12/30/my_git_prompt_for_zsh.html
-# copied from https://gist.github.com/4415470
-# Adapted from code found at <https://gist.github.com/1712320>.
- 
-#setopt promptsubst
-autoload -U colors && colors # Enable colors in prompt
 
 # Modify the colors and symbols in these variables as desired.
 GIT_PROMPT_SYMBOL="%{$fg[blue]%}±"
@@ -80,6 +81,12 @@ function git_prompt_string() {
   local git_where="$(parse_git_branch)"
   ###[ -n "$git_where" ] && echo "on %{$fg[blue]%}${git_where#(refs/heads/|tags/)}$(parse_git_state)"
    [ -n "$git_where" ] && echo "on %{$fg[white]%}${git_where#(refs/heads/|tags/)}$(parse_git_state)"
+}
+
+# If inside an svn repository, print the current revision and state
+function svn_prompt_strig() {
+	local svn_rev="$(parse_svn_revision)"
+	[ -n "$svn_rev" ] && echo "on %{$fg[white]%}svn:${svn_rev#(refs/heads/|tags/)}$(parse_svn_state)"
 }
 
 # determine Ruby version whether using RVM or rbenv
