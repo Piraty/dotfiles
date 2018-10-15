@@ -167,7 +167,9 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	separator_symbol " | "
-        status_command i3status
+	status_command i3status
+	#status_command i3blocks -c /etc/i3blocks.conf
+	i3bar_command i3bar -t
 }
 
 #i3-gaps
@@ -189,8 +191,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 3dB+ unmu
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 3dB- unmute
 bindsym XF86AudioMute        exec --no-startup-id amixer -q set Master toggle
 # backlight (acpilight also provides xbacklight)
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 15
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15 -ctrl `ls /sys/class/backlight | grep -e "amd" -e "intel"`
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 15 -ctrl `ls /sys/class/backlight | grep -e "amd" -e "intel"`
 
 ## touchpad toggle
 bindsym $sup+F5 exec --no-startup-id toggle_touchpad
