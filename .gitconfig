@@ -2,6 +2,9 @@
 	editor = vim
 [alias]
 	s = status
+	a = add
+	c = commit
+	d = diff
 	pullUpstream = pull upstream master --rebase --autostash
 	graph = log --graph --decorate --oneline
 [gui]
