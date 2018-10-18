@@ -1,0 +1,3 @@
+! re-map caps (66) to esc
+clear Lock
+keycode 0x42 = Escape

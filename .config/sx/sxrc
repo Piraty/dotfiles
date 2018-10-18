@@ -22,6 +22,7 @@ setWallpaper() {
 }
 
 [ $(command -v xrdb 2>/dev/null) ] && xrdb -merge -I$HOME ~/.Xresources
+[ $(command -v xmodmap 2>/dev/null) ] && xmodmap ~/.Xmodmap
 [ $(command -v setxkbmap 2>/dev/null) ] && setxkbmap de
 [ $(command -v numlockx 2>/dev/null) ] && numlockx
 [ $(command -v amixer 2>/dev/null) ] && amixer -q set Master 0% unmute
