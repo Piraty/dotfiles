@@ -1,12 +1,12 @@
 # My dotfiles
 
-## how to replicate
+## How to replicate
 based on: https://news.ycombinator.com/item?id=11070797
 
 ```
 #clone + setup
-USER=Piraty
-git clone --separate-git-dir=$HOME/.dotfiles.git https://github.com/${USER}/dotfiles.git $HOME/myconf-tmp
+GITHUB_REPO=Piraty
+git clone --separate-git-dir=$HOME/.dotfiles.git https://github.com/${GITHUB_REPO}/dotfiles.git $HOME/myconf-tmp
 rm -r ~/myconf-tmp/
 alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 dotfiles config status.showUntrackedFiles no
@@ -22,13 +22,13 @@ dotfiles checkout
 * [Void Linux](https://voidlinux.org)
 * [zsh](https://zsh.org)
 * [neovim](https://neovim.io)
-* [i3wm](https://i3wm.org) (i3-gaps actually, don't ask why...)
+* [OpenDoas](https://github.com/Duncaen/OpenDoas/)
+* [acpilight](https://gitlab.com/wavexx/acpilight)
+* [i3-gaps](https://github.com/Airblader/i3)
   * [sx](https://github.com/Earnestly/sx/)
   * [slock](https://tools.suckless.org/slock/)
+  * [redshift](https://github.com/jonls/redshift/)
+  * [unclutter-xfixes](https://github.com/Airblader/unclutter-xfixes/)
   * xset
   * xinput
-  * acpilight
-  * [redshift](https://github.com/jonls/redshift/)
-  * libnotify
-  * [unclutter-xfixes](https://github.com/Airblader/unclutter-xfixes/)
-  * [OpenDoas](https://github.com/Duncaen/OpenDoas/)
+  * libnotify (for on-screen responses of some toggles, like touchpad/auto-screen-blanking)
