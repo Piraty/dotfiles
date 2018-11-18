@@ -38,10 +38,10 @@ alias back='cd $OLDPWD'
 # -------------------------------------------------------------------
 alias ls='ls --color=auto'
 alias sl='ls'
-alias l='ls'
+alias ll='ls -lA -h'
+alias l='ll'
 alias lh='ls -d .*'
 alias lsd='ls -aFhlG'
-alias ll='ls -lA -h'
 alias llh='ll -d .*'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias lsdu='du -sckxh * | sort -nr' #directories sorted by size
@@ -136,9 +136,8 @@ alias tmuxinit='tmux a || tmux'
 alias e='vim'
 alias v='vim'
 alias vi='vim'
-alias pdf='zathura'
 alias svim='sudo vim'
-alias todo='vim Todo/todo.txt'
+alias pdf='zathura'
 
 # run an iso quickly with "qemu -cd <iso>"
 alias qemu='qemu-system-x86_64 -m 256 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -cpu host -boot order=d '
