@@ -5,8 +5,6 @@
 # this file and re-run i3-config-wizard(1).
 #
 
-# i3 config file (v4)
-#
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod1
@@ -24,13 +22,6 @@ set $ctrl Control
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 9
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -41,7 +32,6 @@ set $term xfce4-terminal --hide-scrollbar --hide-borders --hide-toolbar --hide-m
 #set $term kitty
 #set $term xterm
 bindsym $mod+Return exec $term
-#bindsym $mod+Shift+Return exec xfce4-terminal --drop-down --hide-scrollbar --hide-borders --hide-toolbar --hide-menubar -e "sh -c 'tmux a -t dropdown || tmux new -s dropdown'"
 bindsym $mod+Shift+Return exec xfce4-terminal --drop-down --hide-scrollbar --hide-borders --hide-toolbar --hide-menubar 
 
 # kill focused window
@@ -101,9 +91,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -134,7 +121,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-#bindsym $mod+Shift+e exit
+#bindsym $mod+Shift+e exit #better not use that, i hit it all too often...
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
