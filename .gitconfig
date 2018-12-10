@@ -11,3 +11,5 @@
 	warndetachedcommit = true
 	spellingdictionary = none
 	tabsize = 4
+[include]
+	path = ~/.gitconfig.user
