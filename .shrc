@@ -8,5 +8,5 @@ done
 # alias
 files="${HOME}/.alias ${HOME}/.alias_personal"
 for f in $files; do
-	[ -r "$f" ] && . "$f" || echo "$f could not be sourced ($?)"
+	[ -r "$f" ] && . "$f" # || echo "$f could not be sourced ($?)"
 done

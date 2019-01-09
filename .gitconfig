@@ -7,6 +7,7 @@
 	d = diff
 	pullUpstream = pull upstream master --rebase --autostash
 	graph = log --graph --decorate --oneline
+	find = log -i --name-status --grep
 [gui]
 	warndetachedcommit = true
 	spellingdictionary = none

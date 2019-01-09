@@ -19,3 +19,11 @@ set autoread                " automatically read changed files
 " search
 set smartcase               " search casesensitive if pattern contains uppercase chars
 set ignorecase              " overwritten by smartcase if it contains uppercase chars
+
+
+":W - mkdir -p for unexistent directories
+function WriteCreatingDirs()
+	execute ':silent !mkdir -p %:h'
+	write
+endfunction
+command W call WriteCreatingDirs()
