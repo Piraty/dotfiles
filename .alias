@@ -53,11 +53,14 @@ alias filecount='find . -type f | wc -l' # number of files (not directories)
 # -------------------------------------------------------------------
 alias ga='git add'
 alias gp='git push'
+alias gpr='git push --rebase --autostash'
+alias gpru='git push --rebase --autostash upstream master'
 alias gl='git log'
 alias glp="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs='git status'
 alias gss='git status -sb'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gm='git commit -m'
 alias gma='git commit -am'
 alias gca='git commit --amend'
@@ -80,6 +83,12 @@ alias gri='git rebase -i --autostash --autosquash'
 alias gsh="git shortlog | grep -E '^[ ]+\w+' | wc -l"
 # gu shows a list of all developers and the number of commits they've made
 alias gu="git shortlog | grep -E '^[^ ]'"
+
+
+# -------------------------------------------------------------------
+# SVN
+# -------------------------------------------------------------------
+alias svn=' ; echo "use git-svn !!" ; #'
 
 
 # -------------------------------------------------------------------

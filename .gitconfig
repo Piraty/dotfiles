@@ -5,6 +5,7 @@
 	a = add
 	c = commit
 	d = diff
+	l = log
 	pullUpstream = pull upstream master --rebase --autostash
 	graph = log --graph --decorate --oneline
 	find = log -i --name-status --grep
