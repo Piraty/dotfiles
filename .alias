@@ -53,8 +53,6 @@ alias filecount='find . -type f | wc -l' # number of files (not directories)
 # -------------------------------------------------------------------
 alias ga='git add'
 alias gp='git push'
-alias gpr='git push --rebase --autostash'
-alias gpru='git push --rebase --autostash upstream master'
 alias gl='git log'
 alias glp="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs='git status'
@@ -72,6 +70,8 @@ alias gcb='git checkout -b'
 #alias grr='git remote rm'
 alias grv='git remote -v'
 alias gpu='git pull'
+alias gpur='git push --rebase --autostash'
+alias gpuru='git push --rebase --autostash upstream master'
 alias gcl='git clone'
 alias gta='git tag -a -m'
 alias gf='git reflog'
