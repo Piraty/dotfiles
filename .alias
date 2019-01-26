@@ -147,6 +147,7 @@ alias v='vim'
 alias vi='vim'
 alias svim='sudo vim'
 alias pdf='zathura'
+alias torsocks='torsocks --isolate'
 
 # run an iso quickly with "qemu -cd <iso>"
 alias qemu='qemu-system-x86_64 -m 256 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -cpu host -boot order=d '
