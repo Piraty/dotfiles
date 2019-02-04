@@ -171,6 +171,7 @@ gaps outer 3
 bindsym $mod+p exec passmenu
 bindsym $mod+Shift+p exec $term -e "python3"
 bindsym $mod+Shift+o exec $term -e "octave"
+bindsym $mod+Shift+t exec --no-startup-id Thunar
 
 ## bind some controlkeys
 # audio
