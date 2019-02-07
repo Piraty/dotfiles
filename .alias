@@ -39,12 +39,12 @@ alias back='cd $OLDPWD'
 alias ls='ls --color=auto'
 alias sl='ls'
 alias ll='ls -lA -h'
-alias l='ll'
+alias l='ls -lh'
 alias lh='ls -d .*'
 alias lsd='ls -aFhlG'
 alias llh='ll -d .*'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
-alias lsdu='du -sckxh * | sort -nr' #directories sorted by size
+alias lsdu='du -scxh * | sort -hr' #sorted by size
 alias filecount='find . -type f | wc -l' # number of files (not directories)
 
 
