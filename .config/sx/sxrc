@@ -33,7 +33,7 @@ case "$session" in
 	export DE="xfce"
 	setWallpaper
 	#exec i3 
-	exec dbus-launch --exit-with-x11 ck-launch-session i3
+	exec dbus-launch --exit-with-x11 --sh-syntax ck-launch-session i3
 	;;
     plasma) exec plasma-desktop ;;
     xfce|xfce4) exec startxfce4 ;;
