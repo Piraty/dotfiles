@@ -1,0 +1,6 @@
+#!/bin/sh
+# delRoute - read IPs from stdin (one per line) and delete the route
+
+while read -r ip ; do
+	sudo ip route del "$ip"
+done
