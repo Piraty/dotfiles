@@ -95,6 +95,19 @@ alias svn=' ; echo "use git-svn !!" ; #'
 
 
 # -------------------------------------------------------------------
+# LXC
+# -------------------------------------------------------------------
+# pip
+alias lx='lxc list'
+alias lxl='lx'
+alias lxup='lxc start '
+alias lxdown='lxc stop '
+alias lxe='lxc exec '
+alias lxi='lxc image list'
+#lxp() { lxc publish ${1:-ENOCONTAINER} --alias=${2:-ENOALIAS} 2>/dev/null || printf "USAGE: lxp CONTAINER IMAGE-ALIAS\n" }
+
+
+# -------------------------------------------------------------------
 # Python
 # -------------------------------------------------------------------
 # pip
