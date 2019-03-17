@@ -80,6 +80,7 @@ alias gta='git tag -a -m'
 alias gf='git reflog'
 alias gv='git log --pretty=format:'%s' | cut -d " " -f 1 | sort | uniq -c | sort -nr'
 alias gri='git rebase -i --autostash --autosquash'
+alias gra='git rebase --abort'
 
 # curiosities 
 # gsh shows the number of commits for the current repos for all developers
@@ -120,7 +121,7 @@ alias pipi='pipi3'
 # -------------------------------------------------------------------
 # network
 # -------------------------------------------------------------------
-alias myip='curl ifconfig.co'
+alias myip='curl -L ifconfig.co'
 alias ping1='ping -c 4 1.1.1.1'
 alias ping8='ping -c 4 8.8.8.8'
 alias ping9='ping -c 4 9.9.9.9'
@@ -145,7 +146,7 @@ alias xq='xbps-query' #attention: shadows xtools/xq
 alias xx='nice -n 10 ./xbps-src'
 
 # list packages on the system that have updates upstream
-alias listOutdated='curl -s https://alpha.de.repo.voidlinux.org/void-updates/void-updates.txt > /tmp/updates.tmp && grep -i ".* .*->.*" /tmp/updates.tmp | cut -d " " -f1 | sort | uniq > /tmp/updates && xpkg | sort > /tmp/localpkgs && comm -1 -2 /tmp/updates /tmp/localpkgs | sort'
+alias listOutdated='curl -L -s https://alpha.de.repo.voidlinux.org/void-updates/void-updates.txt | grep -i ".* .*->.*" | cut -d " " -f1 | sort | uniq > /tmp/updates && xpkg | sort > /tmp/localpkgs && comm -1 -2 /tmp/updates /tmp/localpkgs | sort'
 
 # -------------------------------------------------------------------
 # paste services
