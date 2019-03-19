@@ -2,7 +2,12 @@
 # setRoute [NEXTHOP] - read IPs from stdin (one per line) and set a route to NEXTHOP
 
 NEXTHOP=${1:-UNDEFINED}
+CACHE=/tmp/customRouteCache
 
 while read -r ip ; do
-	sudo ip route add "$ip" via "$NEXTHOP" proto static
+	# add route + save entries for removal by delRoute
+	sudo ip route add "$ip" via "$NEXTHOP" proto static \
+		&& printf -- 'added route: %s via %s\n' $ip $NEXTHOP \
+		&& printf -- '%s %s\n' $ip $NEXTHOP >> "$CACHE" \
+		|| printf -- 'failed to add route: %s via %s\n' $ip $NEXTHOP
 done

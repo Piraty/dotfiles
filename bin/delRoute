@@ -1,6 +1,16 @@
 #!/bin/sh
 # delRoute - read IPs from stdin (one per line) and delete the route
 
-while read -r ip ; do
-	sudo ip route del "$ip"
-done
+CACHE=/tmp/customRouteCache
+
+if [ "${1:-none}" = "all" ] ; then
+	# remove all routes (addRoutes saves a cache)
+	for ip in $(cat "$CACHE" | cut -d' ' -f1 ) ; do
+		sudo ip route del "$ip"
+	done
+else
+	# remove given routes
+	while read -r ip ; do
+		sudo ip route del "$ip"
+	done
+fi
