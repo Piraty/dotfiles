@@ -13,5 +13,8 @@
 	warndetachedcommit = true
 	spellingdictionary = none
 	tabsize = 4
+[sendemail]
+	annotate = yes
+	suppresscc = self
 [include]
 	path = ~/.gitconfig.user
