@@ -10,6 +10,7 @@ Xcursor.size: 16
 !! XTERM
 !!
 ! general
+XTerm.vt100.locale: true
 XTerm.vt100.saveLines: 8192
 XTerm.vt100.faceName: Monospace:size=11:antialias=true
 
@@ -17,7 +18,7 @@ XTerm.vt100.faceName: Monospace:size=11:antialias=true
 XTerm.vt100.foreground: white
 XTerm.vt100.background: black
 
-!! keys
+! keys
 XTerm.vt100.backarrowKey: false
 
 ! dynamic font size handling
@@ -27,5 +28,24 @@ XTerm.vt100.translations: #override \n\
   Ctrl <Key> plus: larger-vt-font() \n\
   Ctrl <Key> 0: set-vt-font(d) \n\
   Ctrl Shift <Key> C: copy-selection(CLIPBOARD) \n\
-  Ctrl Shift <Key> V: insert-selection(CLIPBOARD)
+  Ctrl Shift <Key> V: insert-selection(CLIPBOARD) \n\
+  Shift <KeyPress> Insert: insert-selection(CLIPBOARD)
 
+
+!!
+!! URXVT
+!!
+! general
+
+! scrolling
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! plugins: url matching + paste protection
+URxvt.perl-ext-common: default,matcher,confirm-paste
