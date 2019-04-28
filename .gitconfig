@@ -16,5 +16,7 @@
 [sendemail]
 	annotate = yes
 	suppresscc = self
+[pull]
+	rebase = true
 [include]
 	path = ~/.gitconfig.user
