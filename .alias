@@ -12,6 +12,7 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto -u'
+alias diffc='diff --color=always -u'
 
 
 # -------------------------------------------------------------------
@@ -111,6 +112,8 @@ alias lxi='lxc image list'
 # -------------------------------------------------------------------
 # Python
 # -------------------------------------------------------------------
+alias py3='python3'
+alias py='py3'
 # pip
 alias pipi2='pip2 install --user'
 alias pipi3='pip3 install --user'
