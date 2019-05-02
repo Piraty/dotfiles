@@ -1,3 +1,5 @@
+! CAPS is mapped to Escape via `xcape`, see: .xinitc
+
 ! map arrows to CAPS+hjkl
 ! src: https://unix.stackexchange.com/a/434143
 keycode 66 = Mode_switch
@@ -6,4 +8,8 @@ keysym l = l L Right
 keysym k = k K Up
 keysym j = j J Down
 
-! CAPS is mapped to Escape via `xcape`, see: .xinitc
+! home, end et al.
+keysym u = u U Home
+keysym i = i I End
+keysym o = o O Prior
+keysym p = p P Next
