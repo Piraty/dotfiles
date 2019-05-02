@@ -24,11 +24,13 @@ dotfiles checkout
 * [neovim](https://neovim.io)
 * [OpenDoas](https://github.com/Duncaen/OpenDoas/)
 * [acpilight](https://gitlab.com/wavexx/acpilight)
-* [i3-gaps](https://github.com/Airblader/i3)
+* [xorg]
+  * [i3-gaps](https://github.com/Airblader/i3)
   * [sx](https://github.com/Earnestly/sx/)
   * [slock](https://tools.suckless.org/slock/)
   * [redshift](https://github.com/jonls/redshift/)
   * [unclutter-xfixes](https://github.com/Airblader/unclutter-xfixes/)
-  * xset
-  * xinput
   * libnotify (for on-screen responses of some toggles, like touchpad/auto-screen-blanking)
+    * xset (to disable screen when locking the screen)
+    * xinput (to disable touchpad on keystroke)
+  * [xcape](https://github.com/alols/xcape)
