@@ -9,7 +9,7 @@ fi
 
 setWallpaper() {
 	# background color (fallback)
-	[ $(command -v xsetroot 2>/dev/null) ] && xsetroot -solid "#000000"
+	command -v xsetroot >/dev/null && xsetroot -solid "#000000"
 	# background image
 	if [ $(command -v feh 2>/dev/null) ]; then
 		feh --no-fehbg --bg-fill ~/.wallpaper/default || \
@@ -18,29 +18,27 @@ setWallpaper() {
 	fi
 }
 
-# default env
-[ $(command -v xrdb 2>/dev/null) ] && xrdb -merge -I$HOME ~/.Xresources
-[ $(command -v amixer 2>/dev/null) ] && amixer -q set Master 0% unmute
+# default X env
+command -v xrdb >/dev/null && xrdb -merge -I$HOME ~/.Xresources
+command -v amixer >/dev/null && amixer -q set Master 0% unmute
 
 # key mapping
-[ $(command -v setxkbmap 2>/dev/null) ] && setxkbmap de
-[ $(command -v numlockx 2>/dev/null) ] && numlockx
-[ $(command -v xmodmap 2>/dev/null) ] && xmodmap ~/.Xmodmap
-[ $(command -v xcape 2>/dev/null) ] && xcape -e 'Mode_switch=Escape'
+command -v setxkbmap >/dev/null && setxkbmap de
+command -v numlockx >/dev/null && numlockx
+command -v xmodmap >/dev/null && xmodmap ~/.Xmodmap
+command -v xcape >/dev/null && xcape -e 'Mode_switch=Escape'
 
 session=${1:-i3}
 
 case "$session" in
-    i3) 
-	#export QT_QPA_PLATFORMTHEME=gtk2
-	export QT_STYLE_OVERRIDE=gtk2
-	export DE="xfce"
-	setWallpaper
-	#exec i3 
-	exec dbus-launch --exit-with-x11 --sh-syntax ck-launch-session i3
-	;;
-    plasma) exec plasma-desktop ;;
-    xfce|xfce4) exec startxfce4 ;;
+	i3)
+		#export QT_QPA_PLATFORMTHEME=gtk2
+		export QT_STYLE_OVERRIDE=gtk2
+		export DE="xfce"
+		setWallpaper
+		#exec i3
+		exec dbus-launch --exit-with-x11 --sh-syntax ck-launch-session i3
+		;;
 
     # No known session, try to run it as a command
     *) exec "$@" ;;
