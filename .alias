@@ -53,6 +53,7 @@ alias filecount='find . -type f | wc -l' # number of files (not directories)
 # Git
 # -------------------------------------------------------------------
 alias ga='git add'
+alias gap='git add --patch'
 alias gp='git push'
 alias gl='git log'
 alias glp="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
