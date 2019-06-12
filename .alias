@@ -47,6 +47,8 @@ alias llh='ll -d .*'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias lsdu='du -scxh * | sort -hr' #sorted by size
 alias filecount='find . -type f | wc -l' # number of files (not directories)
+alias dusch='du -sch'
+alias dfh='df -h'
 
 
 # -------------------------------------------------------------------
@@ -58,7 +60,7 @@ alias gp='git push'
 alias gl='git log'
 alias glp='git log --patch'
 alias glpretty="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias glg='git log --graph --online'
+alias glg='git log --graph --oneline'
 alias gs='git status'
 alias gss='git status -sb'
 alias gd='git diff'

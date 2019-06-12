@@ -4,6 +4,7 @@
 	s = status
 	a = add
 	c = commit
+	ch = checkout
 	d = diff
 	l = log
 	rebaseUpstream = pull upstream master --rebase --autostash
