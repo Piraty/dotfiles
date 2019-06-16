@@ -1,0 +1,13 @@
+#!/bin/sh
+# check if you got updates to do
+
+: ${NAME:="piraty1@inbox.ru"}
+: ${REPO:="https://alpha.de.repo.voidlinux.org/void-updates/"}
+
+_cache="$(mktemp)"
+_url="${REPO}/void-updates/updates_${NAME}.txt"
+
+echo "Checking void-updates for $NAME"
+curl -Ls "$_url" > "$_cache"
+grep -P "<title>\d{3}" ${_cache} > /dev/null && echo "No updates to do" || cat "$_cache"
+rm "$_cache"
