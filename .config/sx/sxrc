@@ -11,7 +11,7 @@ setWallpaper() {
 	# background color (fallback)
 	command -v xsetroot >/dev/null && xsetroot -solid "#000000"
 	# background image
-	if [ $(command -v feh 2>/dev/null) ]; then
+	if command -v feh >/dev/null ; then
 		feh --no-fehbg --bg-fill ~/.wallpaper/default || \
 		feh --no-fehbg --bg-fill --recursive --randomize ~/.wallpaper || \
 		echo "found no wallpapers"
@@ -26,6 +26,7 @@ command -v amixer >/dev/null && amixer -q set Master 0% unmute
 command -v setxkbmap >/dev/null && setxkbmap de
 command -v numlockx >/dev/null && numlockx
 command -v xmodmap >/dev/null && xmodmap ~/.Xmodmap
+#make single CAPS tap act like Esc
 command -v xcape >/dev/null && xcape -e 'Mode_switch=Escape'
 
 session=${1:-i3}
@@ -36,8 +37,8 @@ case "$session" in
 		export QT_STYLE_OVERRIDE=gtk2
 		export DE="xfce"
 		setWallpaper
-		#exec i3
-		exec dbus-launch --exit-with-x11 --sh-syntax ck-launch-session i3
+		exec i3
+		#exec dbus-launch --exit-with-x11 --sh-syntax ck-launch-session i3
 		;;
 
     # No known session, try to run it as a command
