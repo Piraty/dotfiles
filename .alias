@@ -167,7 +167,7 @@ alias termbin='nc termbin.com 9999' #http://termbin.com
 # misc
 # -------------------------------------------------------------------
 alias tmux='tmux -u'
-alias tmuxinit='tmux a || tmux'
+alias tmuxinit='tmux a 2>/dev/null || tmux'
 alias e='vim'
 alias v='vim'
 alias vi='vim'
@@ -175,6 +175,7 @@ alias vmi='vim'
 alias svim='sudo vim'
 alias pdf='zathura'
 alias torsocks='torsocks --isolate'
+alias taridem='tar --sort=name --owner=0 --group=0 --mtime="UTC 2000-01-01" ' #idempotent tar
 
 # run an iso quickly with "qemu -cd <iso>"
 alias qemu='qemu-system-x86_64 -m 256 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -cpu host -boot order=d '
