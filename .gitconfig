@@ -1,3 +1,5 @@
+[include]
+	path = ~/.gitconfig.user
 [core]
 	editor = vim
 [alias]
@@ -17,5 +19,3 @@
 [sendemail]
 	annotate = yes
 	suppresscc = self
-[include]
-	path = ~/.gitconfig.user
