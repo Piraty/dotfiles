@@ -6,12 +6,12 @@ shopt -s extglob
 if [ -f "$1" ]; then
 	case "$1" in
 		*.@(tar?(.@(bz2|gz|lz|lzma|xz|Z))|tb2|tbz|tbz2|tgz|tlz|txz|tZ) ) tar -xaf "$1";;
-		*.bz2) bzip2 -k -d "$1";;
-		*.gz) gunzip "$1";;
+		*.bz2) bzip2 -d -k "$1";;
+		*.gz) gzip -d -k "$1";;
 		*.rar) unrar "$1";;
-		*.xz) xz -d "$1";;
+		*.xz) xz -d -k "$1";;
 		*.zip) unzip "$1";;
-		*.zst) zstd -d "$1";;
+		*.zst) zstd -d -k "$1";;
 		*.Z) uncompress "$1";;
 		*.7z) 7z x "$1";;
 		*) echo "'$1' cannot be extracted via >ex<";;
