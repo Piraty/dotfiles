@@ -13,7 +13,7 @@ dotfiles config status.showUntrackedFiles no
 
 #checkout
 dotfiles status # check for modified files and move them
-dotfiles checkout
+dotfiles checkout $HOME
 ```
 
 ## Dependencies
