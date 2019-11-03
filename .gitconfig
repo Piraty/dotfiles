@@ -19,3 +19,5 @@
 [sendemail]
 	annotate = yes
 	suppresscc = self
+[gpg]
+	program = gpg2
