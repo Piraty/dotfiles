@@ -57,7 +57,7 @@ function parse_git_state() {
     GIT_STATE=$GIT_STATE$GIT_PROMPT_MERGING
   fi
  
-  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+  if [ -n "$(git status --porcelain=v1 2> /dev/null | grep "^??")" ]; then
     GIT_STATE=$GIT_STATE$GIT_PROMPT_UNTRACKED
   fi
  
