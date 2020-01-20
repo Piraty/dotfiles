@@ -177,7 +177,8 @@ alias vmi='vim'
 alias svim='sudo vim'
 alias pdf='zathura'
 alias torsocks='torsocks --isolate'
-alias taridem='tar --sort=name --owner=0 --group=0 --mtime="UTC 2000-01-01" ' #idempotent tar
+#idempotent tar
+alias taridem='tar --format=posix --sort=name --owner=0 --group=0 --numeric-owner --mtime="@${SOURCE_DATE_EPOCH:-"$(date +%s --date="UTC 1970-01-01")"}"'
 
 # run an iso quickly with "qemu -cd <iso>"
 alias qemu='qemu-system-x86_64 -m 256 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -cpu host -boot order=d '
