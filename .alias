@@ -86,10 +86,13 @@ alias gpur='git pull --rebase --autostash'
 alias gpuru='git pull --rebase --autostash upstream master'
 alias gcl='git clone'
 alias gta='git tag -a -m'
-alias gf='git reflog'
+alias gf='git fetch'
+alias gfa='git fetch --all'
+alias gfap='git fetch --all --prune'
 alias gri='git rebase -i --autostash --autosquash'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
+alias grs='git rebase --skip'
 
 # curiosities 
 # gsh shows the number of commits for the current repos for all developers
