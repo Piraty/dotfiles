@@ -180,6 +180,10 @@ alias vmi='vim'
 alias svim='sudo vim'
 alias pdf='zathura'
 alias torsocks='torsocks --isolate'
+alias md5='md5sum'
+alias sha='sha256sum'
+alias sha256='sha256sum'
+alias sha512='sha512sum'
 #idempotent tar
 alias taridem='tar --format=posix --sort=name --owner=0 --group=0 --numeric-owner --mtime="@${SOURCE_DATE_EPOCH:-"$(date +%s --date="UTC 1970-01-01")"}"'
 
