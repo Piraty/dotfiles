@@ -1,21 +1,54 @@
-#!/bin/bash
-# ex FILE - extract a compressed file
+#!/bin/sh
+# ex FILE.. - extract compressed files
 
-shopt -s extglob
+# ensure all files exist
+fail=
+for f ; do
+	if [ ! -f "$f" ]; then
+		printf -- 'Not a valid file: %s\n' "$f" >&2
+		fail=1
+	fi
+done
+[ -n "$fail" ] && exit 1
 
-if [ -f "$1" ]; then
-	case "$1" in
-		*.@(tar?(.@(bz2|gz|lz|lzma|xz|Z))|tb2|tbz|tbz2|tgz|tlz|txz|tZ) ) tar -xaf "$1";;
-		*.bz2) bzip2 -d -k "$1";;
-		*.gz) gzip -d -k "$1";;
-		*.rar) unrar "$1";;
-		*.xz) xz -d -k "$1";;
-		*.zip) unzip "$1";;
-		*.zst) zstd -d -k "$1";;
-		*.Z) uncompress "$1";;
-		*.7z) 7z x "$1";;
-		*) echo "'$1' cannot be extracted via >ex<";;
+set -e
+for f ; do
+	# determine decompression algo by file extension
+	case "$f" in
+		*.tar)
+			tar -x -f "$f" ;;
+		*.tar.bz2|*.tb2|*.tbz|*.tbz2)
+			tar -x -f "$f" --bzip2 ;;
+		*.tar.gz|*.tgz)
+			tar -x -f "$f" --gzip ;;
+		*.tar.xz|*.txz)
+			tar -x -f "$f" --xz ;;
+		*.tar.zstd)
+			tar -x -f "$f" --zstd ;;
+		*.tar.Z|*.tZ)
+			tar -x -f "$f" --compress ;;
+		*.tar.*) # at last, try tar's autodetection (not all tars have it)
+			printf '%s" unknown file extension: %s\n' "$0" "$f" >&2
+			tar -x -f "$f" --auto-compress ;;
+		*.bz2)
+			bzip2 -d -k "$f" ;;
+		*.gz|*.z)
+			gzip -d -k "$f" ;;
+		*.rar)
+			unrar "$f" ;;
+		*.xz)
+			xz -d -k "$f" ;;
+		*.zip)
+			unzip "$f" ;;
+		*.zstd)
+			zstd -d -k -T0 "$f" ;;
+		*.Z)
+			uncompress "$f";;
+		*.7z)
+			7z x "$f" ;;
+		*.deb|*.ipk)
+			opkg-unbuild "$f" ;;
+		*)
+			printf 'FAILED: file suffix unknown to >ex<\n' >&2 ;;
 	esac
-else
-	echo "'$1' is not a valid file"
-fi
+done
