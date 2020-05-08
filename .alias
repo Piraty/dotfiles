@@ -93,6 +93,10 @@ alias gri='git rebase -i --autostash --autosquash'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias grs='git rebase --skip'
+alias gst='git stash'
+alias gsts='git stash show'
+alias gstp='git stash pop'
+alias gstd='git stash drop'
 
 # curiosities 
 # gsh shows the number of commits for the current repos for all developers
