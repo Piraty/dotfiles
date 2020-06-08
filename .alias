@@ -54,53 +54,67 @@ alias dfh='df -h'
 # -------------------------------------------------------------------
 # Git
 # -------------------------------------------------------------------
+# sorted by git-*
 alias ga='git add'
 alias gap='git add --patch'
-alias gp='git push'
-alias gpd='git push --delete'
-alias gl='git log'
-alias gla='git log --all'
-alias glp='git log --patch'
-alias glg='git log --graph'
-alias glga='git log --graph --all --oneline'
-alias glpretty="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gs='git status'
-alias gss='git status -sb'
-alias gd='git diff'
-alias gdw='git diff --word-diff'
-alias gdc='git diff --cached'
-alias gdcw='git diff --cached --word-diff'
-alias gm='git commit -m'
-alias gma='git commit -am'
-alias gca='git commit --amend'
-alias gcan='git commit --amend --no-edit'
+
 alias gb='git branch'
 alias gba='git branch --all'
 alias gbm='git branch -m'
 alias gbd='git branch -d'
+
 alias gc='git checkout'
 alias gcb='git checkout -b'
-alias grv='git remote -v'
-alias gpu='git pull'
-alias gpur='git pull --rebase --autostash'
-alias gpuru='git pull --rebase --autostash upstream master'
+
 alias gcl='git clone'
-alias gta='git tag -a -m'
+
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gca='git commit --amend'
+alias gcan='git commit --amend --no-edit'
+
+alias gd='git diff'
+alias gdw='git diff --word-diff'
+alias gdc='git diff --cached'
+alias gdcw='git diff --cached --word-diff'
+
 alias gf='git fetch'
 alias gfa='git fetch --all'
 alias gfap='git fetch --all --prune'
+
+alias gl='git log'
+alias gla='git log --all'
+alias glo='git log --oneline'
+alias glp='git log --patch'
+alias glg='git log --graph'
+alias glga='git log --graph --all --oneline'
+alias glpretty="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+alias gpu='git pull'
+alias gpur='git pull --rebase --autostash'
+alias gpuru='git pull --rebase --autostash upstream master'
+
+alias gp='git push'
+alias gpd='git push --delete'
+
 alias gri='git rebase -i --autostash --autosquash'
 alias gra='git rebase --abort'
 alias grc='git rebase --continue'
 alias grs='git rebase --skip'
+
+alias grv='git remote -v'
+
 alias gst='git stash'
 alias gsts='git stash show'
 alias gstp='git stash pop'
 alias gstd='git stash drop'
 
+alias gs='git status'
+alias gss='git status -sb'
+
+alias gta='git tag -a -m'
+
 # curiosities 
-# gsh shows the number of commits for the current repos for all developers
-alias gsh="git shortlog | grep -E '^[ ]+\w+' | wc -l"
 # gu shows a list of all developers and the number of commits they've made
 alias gu="git shortlog | grep -E '^[^ ]'"
 
