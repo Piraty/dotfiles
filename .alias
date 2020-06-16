@@ -21,6 +21,7 @@ alias diffc='diff --color=always -u'
 alias chmod='chmod -c --preserve-root'
 alias chown='chown -c --preserve-root'
 alias chgrp='chgrp -c --preserve-root'
+alias cdlog='cd /var/log/'
 
 
 # -------------------------------------------------------------------
@@ -62,9 +63,15 @@ alias gb='git branch'
 alias gba='git branch --all'
 alias gbm='git branch -m'
 alias gbd='git branch -d'
+alias gbD='git branch -D'
 
 alias gc='git checkout'
 alias gcb='git checkout -b'
+
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
+alias gcps='git cherry-pick --skip'
 
 alias gcl='git clone'
 
@@ -89,6 +96,7 @@ alias glp='git log --patch'
 alias glg='git log --graph'
 alias glga='git log --graph --all --oneline'
 alias glpretty="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gls='git log --show-signature'
 
 alias gpu='git pull'
 alias gpur='git pull --rebase --autostash'
@@ -107,8 +115,10 @@ alias grv='git remote -v'
 alias gst='git stash'
 alias gsts='git stash show'
 alias gstp='git stash pop'
+alias gstl='git stash list'
 alias gstd='git stash drop'
 
+alias g='git status'
 alias gs='git status'
 alias gss='git status -sb'
 
@@ -137,6 +147,12 @@ alias lxe='lxc exec '
 alias lxi='lxc image list'
 #lxp() { lxc publish ${1:-ENOCONTAINER} --alias=${2:-ENOALIAS} 2>/dev/null || printf "USAGE: lxp CONTAINER IMAGE-ALIAS\n" }
 
+# -------------------------------------------------------------------
+# Docker
+# -------------------------------------------------------------------
+alias dps='docker ps'
+alias dcls='docker container ls'
+alias dils='docker image ls'
 
 # -------------------------------------------------------------------
 # Python
@@ -196,7 +212,6 @@ alias v='vim'
 alias vi='vim'
 alias vmi='vim'
 alias svim='sudo vim'
-alias pdf='zathura'
 alias torsocks='torsocks --isolate'
 alias md5='md5sum'
 alias sha='sha256sum'
@@ -204,6 +219,10 @@ alias sha256='sha256sum'
 alias sha512='sha512sum'
 #idempotent tar
 alias taridem='tar --format=posix --sort=name --owner=0 --group=0 --numeric-owner --mtime="@${SOURCE_DATE_EPOCH:-"$(date +%s --date="UTC 1970-01-01")"}"'
+
+# gui
+alias fftmp='( p="$(mktemp -d firefox.$(id -un).XXXX)" && chmod 700 "$p" && firefox --no-remote --profile "$p" ; rm -rf "$p" ; ) & disown'
+alias pdf='zathura'
 
 # run an iso quickly with "qemu -cd <iso>"
 alias qemu='qemu-system-x86_64 -m 256 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -cpu host -boot order=d '
