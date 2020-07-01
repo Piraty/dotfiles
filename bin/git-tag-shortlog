@@ -1,14 +1,15 @@
 #!/bin/sh -e
-# git-tag-shortlog TITLE [COMMIT] - create an annotated, signed tag with including shortlog since latest tag
+# git-tag-shortlog TITLE [COMMIT] - create an annotated, signed tag, including shortlog since previous tag
 
 TITLE="$1"
 COMMIT="${2:-HEAD}"
 
+_lasttag="$(git describe --tags --abbrev=0)"
+_shortlog="$(git shortlog $_lasttag..$COMMIT)"
+
 _msg="$TITLE
 
 $_shortlog"
-_lasttag="$(git describe --tags --abbrev=0)"
-_shortlog="$(git shortlog $_lasttag..$COMMIT)"
 
 git tag \
 	-s \
