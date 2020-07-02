@@ -18,29 +18,39 @@ setWallpaper() {
 	fi
 }
 
-# default X env
-command -v xrdb >/dev/null && xrdb -merge -I$HOME ~/.Xresources
-command -v amixer >/dev/null && amixer -q set Master 0% unmute
+(
+	# default X env
+	command -v xrdb && xrdb -merge -I$HOME ~/.Xresources
 
-# key mapping
-command -v setxkbmap >/dev/null && setxkbmap de
-command -v numlockx >/dev/null && numlockx
-command -v xmodmap >/dev/null && xmodmap ~/.Xmodmap
-#make single CAPS tap act like Esc
-command -v xcape >/dev/null && xcape -e 'Mode_switch=Escape'
+	# key mapping
+	command -v setxkbmap && setxkbmap 'us(altgr-intl)'
+	#command -v numlockx && numlockx
+	command -v xmodmap && xmodmap ~/.Xmodmap
+	#make single CAPS tap act like Esc
+	command -v xcape && xcape -e 'Mode_switch=Escape'
+
+	# start muted
+	command -v amixer && amixer -q set Master 0% unmute
+	command -v xset && xset b off
+) >/dev/null
+
+
+#export QT_QPA_PLATFORMTHEME=gtk2
+export QT_STYLE_OVERRIDE=gtk2
+export DE="xfce"
+setWallpaper
 
 session=${1:-i3}
 
 case "$session" in
 	i3)
-		#export QT_QPA_PLATFORMTHEME=gtk2
-		export QT_STYLE_OVERRIDE=gtk2
-		export DE="xfce"
-		setWallpaper
 		exec i3
 		#exec dbus-launch --exit-with-x11 --sh-syntax ck-launch-session i3
 		;;
+	dwm)
+		exec dwm
+		;;
 
-    # No known session, try to run it as a command
-    *) exec "$@" ;;
+	# try to run it as a command
+	*) exec "$@" ;;
 esac
