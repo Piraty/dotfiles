@@ -30,3 +30,6 @@ function WriteCreatingDirs()
 	write
 endfunction
 command W call WriteCreatingDirs()
+
+" void-packages template file
+autocmd BufNewFile,BufRead template set ft=sh sts=0 sw=0 noet
