@@ -224,5 +224,5 @@ alias taridem='tar --format=posix --sort=name --owner=0 --group=0 --numeric-owne
 alias fftmp='( p="$(mktemp -d firefox.$(id -un).XXXX)" && chmod 700 "$p" && firefox --no-remote --profile "$p" ; rm -rf "$p" ; ) & disown'
 alias pdf='zathura'
 
-# run an iso quickly with "qemu -cd <iso>"
-alias qemu='qemu-system-x86_64 -m 256 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -cpu host -boot order=d '
+# run an iso quickly with "qemu -cdrom <iso>"
+alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -boot order=d '
