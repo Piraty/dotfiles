@@ -6,8 +6,9 @@ colo desert
 " Basic settings
 set tabstop=4
 set shiftwidth=4
-set autoread                " automatically read changed files
+set autoread
 set smarttab
+set cursorline
 syntax enable
 filetype indent on
 
@@ -30,6 +31,9 @@ function WriteCreatingDirs()
 	write
 endfunction
 command W call WriteCreatingDirs()
+
+autocmd BufWritePost *.c,*.cpp,*.hpp ! cppcheck --enable=all %
+autocmd BufWritePost *.sh ! shellcheck -x %
 
 " void-packages template file
 autocmd BufNewFile,BufRead template set ft=sh sts=0 sw=0 noet
