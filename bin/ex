@@ -40,6 +40,8 @@ for f ; do
 			gzip -d -k "$f" ;;
 		*.rar)
 			unrar "$f" ;;
+		*.xbps)
+			zstd -d -k -o xbps --stdout "$f" | _tar - ;;
 		*.xz)
 			xz -d -k "$f" ;;
 		*.zip)
