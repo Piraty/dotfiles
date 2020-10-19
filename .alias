@@ -221,12 +221,14 @@ alias md5='md5sum'
 alias sha='sha256sum'
 alias sha256='sha256sum'
 alias sha512='sha512sum'
-#idempotent tar
-alias taridem='tar --sort=name --owner=0 --group=0 --numeric-owner --mtime="@${SOURCE_DATE_EPOCH:-"$(date +%s --date="UTC 1970-01-01")"}"'
-
-# gui
-alias fftmp='( p="$(mktemp -d firefox.$(id -un).XXXX)" && chmod 700 "$p" && firefox --no-remote --profile "$p" ; rm -rf "$p" ; ) & disown'
-alias pdf='zathura'
+wttr() {curl "https://wttr.in/$1";}
 
 # run an iso quickly with "qemu -cdrom <iso>"
-alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -device intel-iommu -usb -rtc base=localtime -boot order=d '
+alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -cpu host -usb -rtc base=localtime -boot order=d '
+
+
+# -------------------------------------------------------------------
+# GUI
+# -------------------------------------------------------------------
+alias fftmp='( ffprofile=$(mktemp -d) ; firefox --no-remote --profile $ffprofile ; rm -rf $ffprofile ; ) & disown'
+alias pdf='zathura'
