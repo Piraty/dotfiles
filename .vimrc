@@ -24,6 +24,10 @@ set undolevels=1000         " Maximum number of changes that can be undone
 set smartcase               " search casesensitive if pattern contains uppercase chars
 set ignorecase              " overwritten by smartcase if it contains uppercase chars
 
+" splits
+set splitbelow
+set splitright
+
 
 ":W - mkdir -p for unexistent directories
 function WriteCreatingDirs()
