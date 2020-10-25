@@ -159,40 +159,31 @@ bar {
 	i3bar_command i3bar -t
 }
 
-#i3-gaps
+# i3-gaps
 for_window [class="^.*"] border pixel 1
 smart_borders on
 smart_gaps on
 gaps inner 10
 gaps outer 3
 
-## resize gaps on demand
+# resize gaps on demand
 bindsym $mod+n gaps inner all set  0; gaps outer all set 0
 bindsym $mod+m gaps inner all set 10; gaps outer all set 3
 
-
-## bind some launchers
-bindsym $mod+p exec passmenu
-bindsym $mod+Shift+p exec $term -e "python3"
-bindsym $mod+Shift+o exec $term -e "octave"
-bindsym $mod+Shift+t exec --no-startup-id Thunar
-
-## bind some controlkeys
-# audio
+# bind some controlkeys
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 3dB+ unmute
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 3dB- unmute
 bindsym XF86AudioMute        exec --no-startup-id amixer -q set Master toggle
-# backlight (acpilight also provides xbacklight)
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15 -ctrl `ls /sys/class/backlight | grep -e "amd" -e "intel"`
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 15 -ctrl `ls /sys/class/backlight | grep -e "amd" -e "intel"`
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 -ctrl $(ls /sys/class/backlight)
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10 -ctrl $(ls /sys/class/backlight)
 
-## touchpad toggle
+# touchpad toggle
 bindsym $sup+F5 exec --no-startup-id toggle_touchpad
 
-## auto screen blanking toggle
+# auto screen blanking toggle
 bindsym $sup+F6 exec --no-startup-id toggle_dpms
 
-## lock screen
+# lock screen
 set $Locker "sleep 0.25 ; xset dpms force off ; sleep 0.35 && slock && sleep 0.25"
 bindsym $ctrl+$mod+l exec --no-startup-id $Locker
 
@@ -224,6 +215,6 @@ bindsym $mod+t exec Thunar
 
 ## start some apps
 exec --no-startup-id redshift-gtk
-#exec --no-startup-id conky
-#exec --no-startup-id wpa_gui -t
+exec --no-startup-id wpa_gui -t
 exec --no-startup-id unclutter --jitter 10 --timeout 3
+exec_always --no-startup-id "if command -v conky >/dev/null; then (killall conky; conky & )>/dev/null 2>&1 ; fi"
