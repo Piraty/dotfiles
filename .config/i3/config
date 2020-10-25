@@ -28,11 +28,10 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 #set $term i3-sensible-terminal
+set $term-xfce4 xfce4-terminal --hide-scrollbar --hide-borders --hide-toolbar --hide-menubar
 set $term xfce4-terminal --hide-scrollbar --hide-borders --hide-toolbar --hide-menubar
-#set $term kitty
-#set $term xterm
+set $term-st st -f "Monospace:size=11"
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec xfce4-terminal --drop-down --hide-scrollbar --hide-borders --hide-toolbar --hide-menubar 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -196,6 +195,32 @@ bindsym $sup+F6 exec --no-startup-id toggle_dpms
 ## lock screen
 set $Locker "sleep 0.25 ; xset dpms force off ; sleep 0.35 && slock && sleep 0.25"
 bindsym $ctrl+$mod+l exec --no-startup-id $Locker
+
+# scratchpads
+for_window [title="dropdown*"] floating enable
+for_window [title="dropdown*"] move scratchpad
+for_window [title="dropdown*"] resize set 1200 720
+for_window [title="dropdown*"] sticky enable
+for_window [title="dropdown*"] border pixel 2
+
+bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show; [title="dropdown-terminal"] move position center
+exec_always --no-startup-id $term-xfce4 -T 'dropdown-terminal'
+
+bindsym $mod+Shift+p [title="dropdown-py3"] scratchpad show; [title="dropdown-py3"] move position center
+exec_always --no-startup-id $term-st -T 'dropdown-py3' -e python3
+
+bindsym $mod+Shift+o [title="dropdown-octave"] scratchpad show; [title="dropdown-octave"] move position center
+exec_always --no-startup-id $term-st -T 'dropdown-octave' -e octave
+
+bindsym $mod+Shift+i [title="dropdown-R"] scratchpad show; [title="dropdown-R"] move position center
+exec_always --no-startup-id $term-st -T 'dropdown-R' -e R
+
+# bind some launchers
+bindsym $mod+p exec passmenu
+#bindsym $mod+Shift+p exec $term "python3"
+#bindsym $mod+Shift+o exec $term "octave"
+#bindsym $mod+Shirt+i exec $term "R"
+bindsym $mod+t exec Thunar
 
 ## start some apps
 exec --no-startup-id redshift-gtk
