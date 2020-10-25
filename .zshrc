@@ -4,11 +4,15 @@
 
 setopt shwordsplit
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh plugins
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || \
+. /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh || \
+. /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-for f in $(ls "${HOME}"/.zsh/*.zsh) ; do
+# custom config
+for f in "$HOME"/.zsh/*zsh ; do
 	. "$f"
 done
 
-. ${HOME}/.shrc
+. "$HOME"/.shrc

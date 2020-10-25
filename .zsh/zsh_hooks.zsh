@@ -10,7 +10,9 @@ function precmd {
 }
 
 function set_running_app {
-  printf "\e]1; $PWD:t:$(history $HISTCMD | cut -b7- ) \a"
+	return 0 #FIXME?
+  printf "\e]1; ${PWD}:t:$(history "$HISTCMD" | cut -b7- ) \a"
+  printf '\e]1; %s:t:%s \a' "${PWD}" "$(history "$HISTCMD" | cut -b7- )"
 }
 
 function preexec {
