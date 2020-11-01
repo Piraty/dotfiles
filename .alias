@@ -1,5 +1,3 @@
-## alias file
-
 # -------------------------------------------------------------------
 # Dotfiles mangement
 # -------------------------------------------------------------------
@@ -113,6 +111,8 @@ alias grs='git rebase --skip'
 
 alias grv='git remote -v'
 
+alias gre='git reset'
+
 alias gst='git stash'
 alias gsts='git stash show'
 alias gstp='git stash pop'
@@ -221,7 +221,7 @@ alias md5='md5sum'
 alias sha='sha256sum'
 alias sha256='sha256sum'
 alias sha512='sha512sum'
-wttr() {curl "https://wttr.in/$1";}
+wttr() { curl "https://wttr.in/$1"; }
 
 # run an iso quickly with "qemu -cdrom <iso>"
 alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -cpu host -usb -rtc base=localtime -boot order=d '
