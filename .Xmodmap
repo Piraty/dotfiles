@@ -2,14 +2,33 @@
 
 ! map arrows to CAPS+hjkl
 ! src: https://unix.stackexchange.com/a/434143
+! keycodes: xev
 keycode 66 = Mode_switch
-keysym h = h H Left
-keysym l = l L Right
-keysym k = k K Up
-keysym j = j J Down
 
-! home, end et al.
-keysym u = u U Home
+keysym h = h H Left Home
+keysym j = j J Down Next
+keysym k = k K Up Prior
+keysym l = l L Right End
+
+!! home, end et al.
+keysym u = u U Home Home udiaeresis Udiaeresis
 keysym i = i I End
-keysym o = o O Prior
-keysym p = p P Next
+keysym o = o O Prior Prior odiaeresis Odiaeresis
+keysym p = p P Next Next
+
+! umlauts on caps-aou, sharp s on caps-s.
+keycode  38 = a A adiaeresis Adiaeresis aacute Aacute ae AE
+keycode  39 = s S ssharp U017F ssharp section U017F U1E9E
+!keycode  32 = o O odiaeresis Odiaeresis oacute Oacute oslash Oslash
+!keycode  30 = u U udiaeresis Udiaeresis uacute Uacute downarrow uparrow
+
+! Typographic features:
+! . is ellipsis, shift-. is midpoint, alt-. is irony.
+! - is en-dash, shift-- is em-dash.
+! ! is interrobang.
+! space is visible space, shift-space is nonbreaking space.
+! alt-s is long s, alt-y is ezh.
+keycode  60 = period greater ellipsis periodcentered dead_abovedot dead_caron U2026 division
+keycode  61 = slash question endash emdash questiondown dead_hook U061F abovedot
+keycode  10 = 1 exclam 1 U203D onesuperior exclamdown onesuperior exclamdown
+keycode  65 = space NoSymbol U2423 U00A0 space
