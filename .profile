@@ -1,3 +1,5 @@
+#!/bin/sh
+
 : ${BROWSER:=$(command -v firefox 2>/dev/null)}
 : ${BROWSER:=$(command -v qutebrowser 2>/dev/null)}
 : ${BROWSER:=$(command -v luakit 2>/dev/null)}
@@ -12,6 +14,12 @@ export EDITOR VISUAL
 
 : ${PAGER:=$(command -v less 2>/dev/null)}
 export PAGER
+
+# XDG
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+[ -d "/run/$USER" ] && export XDG_RUNTIME_DIR=/run/$USER
 
 export ENV="$HOME/.shrc"
 
