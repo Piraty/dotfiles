@@ -36,8 +36,9 @@ function WriteCreatingDirs()
 endfunction
 command W call WriteCreatingDirs()
 
-autocmd BufWritePost *.c,*.cpp,*.hpp ! cppcheck --enable=all %
-autocmd BufWritePost *.sh ! shellcheck -x %
+command Cppcheck execute ':silent ! cppcheck --enable=all %'
+command Shfmt execute ':silent ! shfmt -w -ci %'
+command Shellcheck execute ':! shellcheck -x %'
 
 " void-packages template file
 autocmd BufNewFile,BufRead template set ft=sh sts=0 sw=0 noet
