@@ -1,12 +1,15 @@
+#!/bin/sh
 # common commands for all shells
 
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
+
 # functions
-for f in $(ls "${HOME}"/bin/*.sh) ; do
+for f in "$HOME/bin/"*.sh; do
 	. "$f"
 done
 
 # alias
-files="${HOME}/.alias ${HOME}/.alias_personal"
+files="$HOME/.alias $HOME/.alias_personal"
 for f in $files; do
 	[ -r "$f" ] && . "$f" # || echo "$f could not be sourced ($?)"
 done
