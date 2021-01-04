@@ -3,12 +3,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source ~/.colors
-#PS1='[\u@\h \W]\$ '
-source ~/.bash_prompt
+PS1='[\u@\h \W]\$ '
+
+for src in \
+	"$HOME/.colors" \
+	"$HOME/.bash_prompt" \
+	"$HOME/.shrc" \
+	; do
+	[ -f "$src" ] && . "$src"
+done
 
 shopt -s autocd
-set -o noclobber #disallow existing regular files to be overwritten by redirection of shell output
 shopt -s checkwinsize
 
-. ${HOME}/.shrc
+#disallow existing regular files to be overwritten by redirection of shell output
+set -o noclobber
