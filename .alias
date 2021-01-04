@@ -11,6 +11,7 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto -u'
 alias diffc='diff --color=always -u'
+alias lns='ln -s'
 
 
 # -------------------------------------------------------------------
@@ -54,6 +55,7 @@ alias dfh='df -h'
 # Git
 # -------------------------------------------------------------------
 # sorted by git-*
+alias g='git'
 alias ga='git add'
 alias gap='git add --patch'
 
@@ -89,6 +91,7 @@ alias gfap='git fetch --all --prune'
 
 alias gl='git log'
 alias gla='git log --all'
+alias glf='git log --follow'
 alias glo='git log --oneline'
 alias glp='git log --patch'
 alias glg='git log --graph'
@@ -220,6 +223,11 @@ alias listOutdated='curl -L -s https://alpha.de.repo.voidlinux.org/void-updates/
 # -------------------------------------------------------------------
 alias termbin='nc termbin.com 9999' #http://termbin.com
 
+
+# -------------------------------------------------------------------
+# file analysis
+# -------------------------------------------------------------------
+alias bw='binwalk'
 
 # -------------------------------------------------------------------
 # misc
