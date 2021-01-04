@@ -13,8 +13,6 @@ export EDITOR VISUAL
 : ${PAGER:=$(command -v less 2>/dev/null)}
 export PAGER
 
-export TEXLIVE="2018"
-
 export ENV="$HOME/.shrc"
 
 export HOSTALIASES="$HOME/hosts"
@@ -25,6 +23,4 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 export CLICOLOR=1
 
 PATH="$HOME/bin/:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-#explicitly use specific texlive (on Void)
-PATH="/opt/texlive/$TEXLIVE/bin/x86_64-linux:$PATH"
 export PATH
