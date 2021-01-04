@@ -140,6 +140,21 @@ alias gu="git shortlog | grep -E '^[^ ]'"
 alias svn='echo "use git-svn !!" ; #'
 
 
+#
+# dev
+#
+alias shfmt='shfmt -p -ci'
+
+alias gdb='gdb -q'
+
+# zig
+alias zlst='zig targets | jq ".libc | sort|unique"'
+alias zig-export-linux-x86_64='export CC="zig cc -target x86_64-linux-musl" CXX="zig c++ -target x86_64-linux-musl"'
+alias zig-export-linux-x86_32='export CC="zig cc -target i386-linux-musl CXX="zig c++ -target i386-linux-musl'
+alias zig-export-win64='export CC="zig cc -target x86_64-windows-gnu" CXX="zig c++ -target x86_64-windows-gnu"'
+alias zig-export-win32='export CC="zig cc -target i386-windows-gnu" CXX="zig c++ -target x86_64-windows-gnu"'
+
+
 # -------------------------------------------------------------------
 # LXC
 # -------------------------------------------------------------------
