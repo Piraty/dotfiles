@@ -9,6 +9,7 @@ set shiftwidth=4
 set autoread
 set smarttab
 set cursorline
+set colorcolumn=80
 syntax enable
 filetype indent on
 
