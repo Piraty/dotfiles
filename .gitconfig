@@ -9,9 +9,10 @@
 	ch = checkout
 	d = diff
 	l = log
-	rebaseUpstream = pull upstream master --rebase --autostash
 	graph = log --graph --decorate --oneline
 	find = log -i --name-status --grep
+	rebaseUpstream = pull upstream master --rebase --autostash
+	diffUpstream = diff-tree -r --no-renames --name-only --diff-filter=AM FETCH_HEAD HEAD
 [gui]
 	warndetachedcommit = true
 	spellingdictionary = none
