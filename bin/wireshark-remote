@@ -1,0 +1,36 @@
+#!/bin/sh -e
+#analyze a remote host's pcap locally in wireshark
+
+tcpd_defargs="-i any -Un"
+ssh_defargs="-C -o Loglevel=ERROR"
+
+usage() {
+	echo "Usage: wireshark-remote HOST [TCPDUMP_ARGS]" >&2
+	exit 1
+}
+
+
+host="$1"
+shift
+[ -n "$host" ] || usage
+
+if [ "$#" -lt 1 ]; then
+	tcpdump_args="$tcpd_defargs"
+else
+	tcpdump_args="$@"
+fi
+
+ssh_args="$ssh_defargs"
+
+# we need root to pcap
+priv=
+# testing $host isn't reliable (might be an ssh alias) so we get uid from remote
+if [ "$(ssh "$host" id -u)" != "0" ]; then
+	priv=sudo
+fi
+
+# shellcheck disable=SC2086
+exec \
+	ssh $ssh_args "$host" \
+		"$priv tcpdump -U -w - $tcpdump_args 2>/dev/null" \
+	| wireshark -i - -k
