@@ -175,6 +175,8 @@ alias lxi='lxc image list'
 alias dps='docker ps'
 alias dcls='docker container ls'
 alias dils='docker image ls'
+alias dr='docker run'
+alias dru='docker run -u $(id -u):$(id -g)'
 
 # -------------------------------------------------------------------
 # Python
