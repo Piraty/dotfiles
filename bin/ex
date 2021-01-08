@@ -3,60 +3,79 @@
 
 # ensure all files exist
 fail=
-for f ; do
+for f; do
 	if [ ! -f "$f" ]; then
 		printf -- 'Not a valid file: %s\n' "$f" >&2
 		fail=1
 	fi
 done
-[ -n "$fail" ] && exit 1
+[ -z "$fail" ] || exit 1
 
 # _tar FILE [args]
 : "${TAR:=tar}"
-_tar() { $TAR -x -f "$@" ; }
+_tar() { $TAR -x -f "$@"; }
 
-for f ; do
+for f; do
 	# determine decompression algo by file extension
 	case "$f" in
 		*.a)
-			ar x "$f" ;;
+			ar x "$f"
+			;;
 		*.tar)
-			_tar "$f" ;;
-		*.tar.bz2|*.tb2|*.tbz|*.tbz2)
-			_tar "$f" --bzip2 ;;
-		*.tar.gz|*.tgz)
-			_tar "$f" --gzip ;;
-		*.tar.xz|*.txz)
-			_tar "$f" --xz ;;
-		*.tar.zstd|*.tar.zst)
-			_tar "$f" --zstd ;;
-		*.tar.Z|*.tZ)
-			_tar "$f" --compress ;;
+			_tar "$f"
+			;;
+		*.tar.bz2 | *.tb2 | *.tbz | *.tbz2)
+			_tar "$f" --bzip2
+			;;
+		*.tar.gz | *.tgz)
+			_tar "$f" --gzip
+			;;
+		*.tar.xz | *.txz)
+			_tar "$f" --xz
+			;;
+		*.tar.zstd | *.tar.zst)
+			_tar "$f" --zstd
+			;;
+		*.tar.Z | *.tZ)
+			_tar "$f" --compress
+			;;
 		*.tar.*)
 			# at last, try tar's autodetection (not all tars have it though)
 			printf '%s\n' "unknown file extension: $f" >&2
-			_tar "$f" --auto-compress ;;
+			_tar "$f" --auto-compress
+			;;
 		*.bz2)
-			bzip2 -d -k "$f" ;;
-		*.gz|*.z)
-			gzip -d -k "$f" ;;
+			bzip2 -d -k "$f"
+			;;
+		*.gz | *.z)
+			gzip -d -k "$f"
+			;;
 		*.rar)
-			unrar "$f" ;;
+			unrar "$f"
+			;;
 		*.xbps)
-			zstd -d -k -o xbps --stdout "$f" | _tar - ;;
+			zstd -d -k -o xbps --stdout "$f" | _tar -
+			;;
 		*.xz)
-			xz -d -k "$f" ;;
+			xz -d -k "$f"
+			;;
 		*.zip)
-			unzip "$f" ;;
-		*.zstd|*.zst)
-			zstd -d -k -T0 "$f" ;;
+			unzip "$f"
+			;;
+		*.zstd | *.zst)
+			zstd -d -k -T0 "$f"
+			;;
 		*.Z)
-			uncompress "$f";;
+			uncompress "$f"
+			;;
 		*.7z)
-			7z x "$f" ;;
-		*.deb|*.ipk)
-			opkg-unbuild "$f" ;;
+			7z x "$f"
+			;;
+		*.deb | *.ipk)
+			opkg-unbuild "$f"
+			;;
 		*)
-			printf 'FAILED: file suffix unknown to >ex<\n' >&2 ;;
+			printf 'FAILED: file suffix unknown to >ex<\n' >&2
+			;;
 	esac
 done
