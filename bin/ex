@@ -18,6 +18,8 @@ _tar() { $TAR -x -f "$@" ; }
 for f ; do
 	# determine decompression algo by file extension
 	case "$f" in
+		*.a)
+			ar x "$f" ;;
 		*.tar)
 			_tar "$f" ;;
 		*.tar.bz2|*.tb2|*.tbz|*.tbz2)
