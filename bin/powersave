@@ -1,0 +1,35 @@
+#!/bin/sh
+# powersave 0|1 - enable/disable CPU powersave
+
+if [ "$(id -u)" != "0" ]; then
+	: "${priv:="$(command -v doas)"}"
+	: "${priv:="$(command -v sudo)"}"
+	exec "$priv" "$0" "$@"
+fi
+
+disable_cpus() {
+	echo 0 | tee /sys/devices/system/cpu/cpu*/online >/dev/null
+}
+
+enable_cpus() {
+	echo 1 | tee /sys/devices/system/cpu/cpu*/online >/dev/null
+}
+
+gov_powersave() {
+	echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor >/dev/null
+}
+
+gov_schedutil() {
+	echo "schedutil" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor >/dev/null
+}
+
+case "$1" in
+	0)
+		enable_cpus
+		gov_schedutil
+		;;
+	*)
+		gov_powersave 2>/dev/null
+		disable_cpus
+		;;
+esac
