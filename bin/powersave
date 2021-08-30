@@ -4,6 +4,8 @@
 if [ "$(id -u)" != "0" ]; then
 	: "${priv:="$(command -v doas)"}"
 	: "${priv:="$(command -v sudo)"}"
+	: "${priv:="ENOPRIV"}"
+	set -x
 	exec "$priv" "$0" "$@"
 fi
 
