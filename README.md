@@ -1,13 +1,14 @@
 # My dotfiles
 
 ## How to replicate
+
 based on: https://news.ycombinator.com/item?id=11070797
 
 ```
 #clone + setup
 GITHUB_REPO=Piraty
 git clone --separate-git-dir=$HOME/.dotfiles.git https://github.com/${GITHUB_REPO}/dotfiles.git $HOME/myconf-tmp
-rm -r ~/myconf-tmp/
+rm -r $HOME/myconf-tmp/
 alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 dotfiles config status.showUntrackedFiles no
 
@@ -17,6 +18,7 @@ dotfiles checkout $HOME
 ```
 
 ## Dependencies
+
 (at least the most important ones)
 
 * [Void Linux](https://voidlinux.org)
@@ -25,12 +27,11 @@ dotfiles checkout $HOME
 * [OpenDoas](https://github.com/Duncaen/OpenDoas/)
 * [acpilight](https://gitlab.com/wavexx/acpilight)
 * [xorg]
-  * [i3-gaps](https://github.com/Airblader/i3)
-  * [sx](https://github.com/Earnestly/sx/)
-  * [slock](https://tools.suckless.org/slock/)
-  * [redshift](https://github.com/jonls/redshift/)
-  * [unclutter-xfixes](https://github.com/Airblader/unclutter-xfixes/)
-  * libnotify (for on-screen responses of some toggles, like touchpad/auto-screen-blanking)
-    * xset (to disable screen when locking the screen)
-    * xinput (to disable touchpad on keystroke)
-  * [xcape](https://github.com/alols/xcape)
+	* [i3-gaps](https://github.com/Airblader/i3)
+	* [sx](https://github.com/Earnestly/sx/)
+	* [slock](https://tools.suckless.org/slock/)
+	* [redshift](https://github.com/jonls/redshift/)
+	* [unclutter-xfixes](https://github.com/Airblader/unclutter-xfixes/)
+	* [xcape](https://github.com/alols/xcape)
+	* xset
+	* xinput
