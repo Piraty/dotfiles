@@ -4,8 +4,10 @@
 TITLE="$1"
 COMMIT="${2:-HEAD}"
 
-_lasttag="$(git describe --tags --abbrev=0)"
-_shortlog="$(git shortlog $_lasttag..$COMMIT)"
+_lastref="$(git describe --tags --abbrev=0 || git log --format='%H' | tail -n1)"
+# if no tag was found, fallback to first commit
+: "${_lastref:="$(git log --format='%H' | tail -n1)"}"
+_shortlog="$(git shortlog ${_lastref}..${COMMIT})"
 
 _msg="$TITLE
 
