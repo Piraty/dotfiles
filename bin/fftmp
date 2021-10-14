@@ -1,0 +1,10 @@
+#!/bin/sh
+# fftmp - start firefox with new profile from tmpfs
+
+profile="$(mktemp -d)"
+
+trap "rm -rf $profile" EXIT QUIT INT
+
+firefox \
+	--no-remote \
+	--profile "$profile" "$@"

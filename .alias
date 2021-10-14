@@ -255,5 +255,4 @@ alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -cpu h
 # -------------------------------------------------------------------
 # GUI
 # -------------------------------------------------------------------
-alias fftmp='( ffprofile=$(mktemp -d) ; firefox --no-remote --profile $ffprofile ; rm -rf $ffprofile ; ) & disown'
 alias pdf='zathura'
