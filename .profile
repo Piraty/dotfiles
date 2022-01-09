@@ -19,7 +19,7 @@ export PAGER
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
-[ -d "/run/$USER" ] && export XDG_RUNTIME_DIR=/run/$USER
+[ -d "/run/user/$(id -u)" ] && export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
 export ENV="$HOME/.shrc"
 
