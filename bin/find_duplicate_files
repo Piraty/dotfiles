@@ -1,10 +1,10 @@
 #!/bin/sh
-# find_duplicate_files PATH.. - report duplicate files
+# find_duplicate_files [PATH..] - report duplicate files
 
 #DESIGN
 #  1. find files of equal size
-#  2. compare their hashsum
-#  equal file are printed on the same line, separated by a whitespace
+#  2. for files with equal size, compare hashsum
+#  files with the same hash are printed on consequtive lines, separated by blank line
 
 : "${HASH:=md5sum}"
 
@@ -19,30 +19,33 @@ for arg; do
 	shift
 done
 
-# generate list of files with their filesize
+[ "$#" -gt 0 ] || set -- "."
+
+# list files with their filesize
 filelist_size="$(mktemp)"
 for arg; do
-	find "$arg" -type f | parallel -j "$(nproc)" du
-done >"$filelist_size"
+	find "$arg" -type f -print0 | du --files0-from=-
+done | sort -nr >"$filelist_size"
 
-# generate list of files of same size and their hashsum
+# cleanup list: remove empty files
+sed -i "$filelist_size" -e '/^0/d' 
+
+# list files of same size and same hashsum
 duplicate_sizes="$(cut -f1 "$filelist_size" | sort -n | uniq -d)"
-echo "$duplicate_sizes" | parallel grep
+[ -n "$duplicate_sizes" ] || exit
 for size in $duplicate_sizes; do
+
+	# save hashsum for each file of equal size
 	filelist_hash="${filelist_size}_${size}"
-	grep "^$size[ 	]" "$filelist_size" | cut -f2 | parallel -j "$(nproc)" "$HASH" >"$filelist_hash"
-	duplicate_hash="$(cut -d' ' -f1 "$filelist_hash" | sort -n | uniq -d)"
+	grep "^$size[ 	]" "$filelist_size" | cut -f2- | parallel -j "$(nproc)" "$HASH" >"$filelist_hash"
 
 	# print duplicate files
-	if [ -n "$duplicate_hash" ]; then
-		for hash in $duplicate_hash; do
-			grep "^$hash" "$filelist_hash" |
-				cut -d' ' -f3- |
-				sed 's/ /\\ /g' |
-				tr '\n' ' '
-		done
+	duplicate_hashes="$(cut -d' ' -f1 "$filelist_hash" | sort | uniq -d)"
+	[ -n "$duplicate_hashes" ] || continue
+	for hash in $duplicate_hashes; do
+		grep "^$hash" "$filelist_hash" | cut -d' ' -f3-
 		printf '\n'
-	fi
+	done
 done
 
 # cleanup
