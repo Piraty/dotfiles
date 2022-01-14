@@ -30,7 +30,7 @@ for f; do
 		*.tar.gz | *.tgz)
 			_tar "$f" --gzip
 			;;
-		*.tar.xz | *.txz)
+		*.tar.xz | *.txz | *.tlz)
 			_tar "$f" --xz
 			;;
 		*.tar.zstd | *.tar.zst)
