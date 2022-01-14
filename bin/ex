@@ -53,6 +53,9 @@ for f; do
 		*.rar)
 			unrar "$f"
 			;;
+		*.whl)
+			unzip "$f"
+			;;
 		*.xbps)
 			zstd -d -k -o xbps --stdout "$f" | _tar -
 			;;
