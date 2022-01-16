@@ -7,38 +7,16 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-setWallpaper() {
-	# background color (fallback)
-	command -v xsetroot >/dev/null && xsetroot -solid "#000000"
-	# background image
-	if command -v feh >/dev/null ; then
-		feh --no-fehbg --bg-fill ~/.wallpaper/default || \
-		feh --no-fehbg --bg-fill --recursive --randomize ~/.wallpaper || \
-		echo "found no wallpapers"
-	fi
-}
+[ -f "$HOME/bin/x-init" ] && . "$HOME/bin/x-init"
 
-(
-	# default X env
-	command -v xrdb && xrdb -merge -I$HOME ~/.Xresources
+# mute
+command -v amixer && amixer -q set Master 0% unmute
 
-	# key mapping
-	command -v setxkbmap && setxkbmap 'us(altgr-intl)'
-	#command -v numlockx && numlockx
-	command -v xmodmap && xmodmap ~/.Xmodmap
-	#make single CAPS tap act like Esc
-	command -v xcape && xcape -e 'Mode_switch=Escape'
-
-	# start muted
-	command -v amixer && amixer -q set Master 0% unmute
-	command -v xset && xset b off
-) >/dev/null
-
+command -v xset && xset b off
 
 #export QT_QPA_PLATFORMTHEME=gtk2
 export QT_STYLE_OVERRIDE=gtk2
 export DE="xfce"
-setWallpaper
 
 session=${1:-i3}
 

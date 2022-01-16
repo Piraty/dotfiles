@@ -1,0 +1,26 @@
+#!/bin/sh
+# initialize everything related to X
+
+set_wallpaper() {
+	(
+		feh --no-fehbg --bg-fill ~/.wallpaper/default ||
+			feh --no-fehbg --bg-fill --recursive --randomize ~/.wallpaper ||
+			xsetroot -solid "#000000"
+	) 2>/dev/null
+}
+
+set_keyboard() {
+	# default X env
+	command -v xrdb >/dev/null && xrdb -merge -I"$HOME" ~/.Xresources
+
+	# key mapping
+	setxkbmap 'us(altgr-intl)'
+	#numlockx
+	xmodmap ~/.Xmodmap
+
+	killall -q xcape
+	xcape -e 'Mode_switch=Escape' #make single CAPS tap act like ESC
+}
+
+set_wallpaper
+set_keyboard
