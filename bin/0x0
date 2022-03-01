@@ -1,0 +1,29 @@
+#!/bin/sh
+# post file(s) to 0x0.st
+# USAGE: 0x0 FILE.. -
+# USAGE: PIPE | 0x0
+
+dest_url="https://0x0.st"
+
+[ -p /dev/stdin ] && set -- /dev/stdin
+
+for arg; do
+	# pipe mode
+	# this covers pipe from stdin as well as bourne-style <(echo foo) 
+	if [ -p "$arg" ]; then
+		cat "$arg" | curl -F"file=@-" "$dest_url"
+		continue
+	fi
+	# file mode
+	if [ -f "$arg" ]; then
+		curl -F"file=@$arg" "$dest_url"
+		continue
+	fi
+	# url mode
+	case "$arg" in
+		http?://*)
+			curl -F"url=$arg" "$dest_url"
+			continue
+			;;
+	esac
+done
