@@ -1,13 +1,13 @@
-#!/bin/sh -e
-# git-tag-shortlog TITLE [COMMIT] - create an annotated, signed tag, including shortlog since previous tag
+#!/bin/sh
+# git-tag-shortlog TITLE [REF] - create an annotated, signed tag, including shortlog since previous tag
+
+set -eu
 
 TITLE="$1"
-COMMIT="${2:-HEAD}"
+REF="${2:-HEAD}"
 
-_lastref="$(git describe --tags --abbrev=0 2>/dev/null || git log --format='%H' | tail -n1)"
-# if no tag was found, fallback to first commit
-: "${_lastref:="$(git log --format='%H' | tail -n1)"}"
-_shortlog="$(git shortlog ${_lastref}..${COMMIT})"
+_lastref="$(git describe --tags --abbrev=0 "$REF" 2>/dev/null || git log --format='%H' "$REF" | tail -n1)"
+_shortlog="$(git shortlog "$_lastref".."$REF")"
 
 _msg="$TITLE
 
@@ -18,4 +18,4 @@ git tag \
 	-a \
 	--edit \
 	-m "$_msg" \
-	"$TITLE" "$COMMIT"
+	"$TITLE" "$REF"
