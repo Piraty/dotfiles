@@ -2,20 +2,19 @@
 
 ## How to replicate
 
-based on: https://news.ycombinator.com/item?id=11070797
+based on: https://news.ycombinator.com/item?id=11071754
 
-```
-#clone + setup
-GITHUB_REPO=Piraty
-git clone --separate-git-dir=$HOME/.dotfiles.git https://github.com/${GITHUB_REPO}/dotfiles.git $HOME/myconf-tmp
-rm -r $HOME/myconf-tmp/
-alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
-dotfiles config status.showUntrackedFiles no
+	# clone + setup
+	USER=you
+	REPO=https://github.com/${USER:-piraty}/dotfiles.git
+	git clone --separate-git-dir=$HOME/.dotfiles.git $REPO $HOME/myconf-tmp
+	rm -r $HOME/myconf-tmp/
+	alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
+	dotfiles config status.showUntrackedFiles no
 
-#checkout
-dotfiles status # check for modified files and move them
-dotfiles checkout $HOME
-```
+	# inspect conflicts + checkout
+	dotfiles status # check for modified files and move them
+	dotfiles checkout $HOME
 
 ## Dependencies
 
