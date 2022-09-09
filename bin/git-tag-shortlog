@@ -1,15 +1,18 @@
 #!/bin/sh
-# git-tag-shortlog TITLE [REF] - create an annotated, signed tag, including shortlog since previous tag
+# git-tag-shortlog TITLE [REF] - create an annotated, signed tag, including shortlog since previous tag or initial commit
 
 set -eu
 
-TITLE="$1"
+TITLE="${1:?}"
 REF="${2:-HEAD}"
 
-_lastref="$(git describe --tags --abbrev=0 "$REF" 2>/dev/null || git log --format='%H' "$REF" | tail -n1)"
-_shortlog="$(git shortlog "$_lastref".."$REF")"
+lastref="$(git describe --tags --abbrev=0 "$REF" 2>/dev/null)" || :
+# prepend ^ to hash, to limit reach past them
+[ -n "$lastref" ] && lastref="^$lastref"
+#shellcheck disable=SC2086
+_shortlog="$(git shortlog $lastref $REF)"
 
-_msg="$TITLE
+msg="$TITLE
 
 $_shortlog"
 
@@ -17,5 +20,5 @@ git tag \
 	-s \
 	-a \
 	--edit \
-	-m "$_msg" \
+	-m "$msg" \
 	"$TITLE" "$REF"
