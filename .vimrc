@@ -4,6 +4,7 @@ set relativenumber
 colo desert
 
 " Basic settings
+set mouse=
 set tabstop=4
 set shiftwidth=4
 set autoread
