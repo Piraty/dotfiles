@@ -21,6 +21,7 @@ alias chmod='chmod -c --preserve-root'
 alias chown='chown -c --preserve-root'
 alias chgrp='chgrp -c --preserve-root'
 alias cdlog='cd /var/log/'
+alias mvi='mv -i'
 
 
 # -------------------------------------------------------------------
@@ -40,10 +41,11 @@ alias back='cd $OLDPWD'
 alias ls='ls --color=auto'
 alias sl='ls'
 alias ll='ls -lA -h'
-alias l='ls -lh'
+alias l='ls -1'
 alias lh='ls -d .*'
 alias lsd='ls -aFhlG'
 alias llh='ll -d .*'
+alias llt='ll -tr'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias lsdu='du -scxh * | sort -hr' #sorted by size
 alias filecount='find . -type f | wc -l' # number of files (not directories)
@@ -236,11 +238,12 @@ alias bw='binwalk'
 # -------------------------------------------------------------------
 alias tmux='tmux -u'
 alias tmuxinit='tmux a 2>/dev/null || tmux'
+command -v nvim >/dev/null && alias vim='nvim'
 alias e='vim'
 alias v='vim'
 alias vi='vim'
 alias vmi='vim'
-alias svim='sudo vim'
+alias svim='priv vim'
 alias torsocks='torsocks --isolate'
 alias md5='md5sum'
 alias sha='sha256sum'
@@ -256,3 +259,8 @@ alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -cpu h
 # GUI
 # -------------------------------------------------------------------
 alias pdf='zathura'
+
+#
+# Debian fixes
+#
+command -v fdfind >/dev/null && alias fd='fdfind'
