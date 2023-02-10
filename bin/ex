@@ -12,7 +12,9 @@ done
 [ -z "$fail" ] || exit 1
 
 # _tar FILE [args]
-: "${TAR:=tar}"
+: "${TAR:="$(command -v bsdtar)"}"
+: "${TAR:="$(command -v tar)"}"
+: "${TAR:=false}"
 _tar() { $TAR -x -f "$@"; }
 
 for f; do
