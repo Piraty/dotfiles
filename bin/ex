@@ -53,6 +53,9 @@ for f; do
 		*.rar)
 			unrar "$f"
 			;;
+		*.rpm)
+			rpm2cpio "$f" | _tar -
+			;;
 		*.whl)
 			unzip "$f"
 			;;
