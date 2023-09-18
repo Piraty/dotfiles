@@ -15,7 +15,7 @@ done
 : "${TAR:="$(command -v bsdtar)"}"
 : "${TAR:="$(command -v tar)"}"
 : "${TAR:=false}"
-_tar() { $TAR -x -f "$@"; }
+_tar() { $TAR -x -m -f "$@"; }
 
 for f; do
 	# determine decompression algo by file extension
@@ -49,8 +49,14 @@ for f; do
 		*.bz2)
 			bzip2 -d -k "$f"
 			;;
+		*.deb | *.ipk)
+			opkg-unbuild "$f"
+			;;
 		*.gz | *.z)
 			gzip -d -k "$f"
+			;;
+		*.iso)
+			xorriso -osirrox on -indev "$f" -extract / "$(pwd)"
 			;;
 		*.rar)
 			unrar "$f"
@@ -78,9 +84,6 @@ for f; do
 			;;
 		*.7z)
 			7z x "$f"
-			;;
-		*.deb | *.ipk)
-			opkg-unbuild "$f"
 			;;
 		*)
 			printf 'FAILED: file suffix unknown to >ex<\n' >&2
