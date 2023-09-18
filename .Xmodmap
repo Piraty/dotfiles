@@ -5,16 +5,16 @@
 ! keycodes: xev
 keycode 66 = Mode_switch
 
-keysym h = h H Left Home
-keysym j = j J Down Next
-keysym k = k K Up Prior
-keysym l = l L Right End
+keysym h = h H Left Left Left Left
+keysym j = j J Down Down Down Down
+keysym k = k K Up Up Up Up
+keysym l = l L Right Right Right Right
 
 !! home, end et al.
 keysym u = u U Home Home udiaeresis Udiaeresis
-keysym i = i I End
+keysym i = i I Next Next
 keysym o = o O Prior Prior odiaeresis Odiaeresis
-keysym p = p P Next Next
+keysym p = p P End
 
 ! umlauts on caps-aou, sharp s on caps-s.
 keycode  38 = a A adiaeresis Adiaeresis aacute Aacute ae AE
