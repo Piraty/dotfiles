@@ -18,3 +18,5 @@ shopt -s checkwinsize
 
 #disallow existing regular files to be overwritten by redirection of shell output
 set -o noclobber
+
+. $HOME/.shrc
