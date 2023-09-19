@@ -39,10 +39,12 @@ for size in $duplicate_sizes; do
 	grep "^${size}[ 	]" "$filelist_size" | cut -f2- | parallel -j "$(nproc)" "$HASH" >"$filelist_hash"
 
 	# print duplicate files
+	sep=":"
 	duplicate_hashes="$(cut -d' ' -f1 "$filelist_hash" | sort | uniq -d)"
 	[ -n "$duplicate_hashes" ] || continue
 	for hash in $duplicate_hashes; do
-		grep "^$hash" "$filelist_hash" | cut -d' ' -f3-
+		# printf '%s:' "$size"
+		grep "^$hash" "$filelist_hash" | cut -d' ' -f3- | sort | tr '\n' "$sep" | sed -e "s/${sep}$//"
 		printf '\n'
 	done
 done
