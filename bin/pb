@@ -1,6 +1,0 @@
-#!/bin/sh
-# paste to https://ptpb.pw
-
-: ${EXPIRE:=7200}
-
-curl -F c="<-" -F sunset="$EXPIRE" "https://ptpb.pw/?u=1"
