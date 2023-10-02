@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # -------------------------------------------------------------------
 # Dotfiles mangement
 # -------------------------------------------------------------------
@@ -33,6 +35,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias back='cd $OLDPWD'
+mkcd() { mkdir -p "$1" && cd "$1"; }
+cdl() { cd "$1" && ls -lAh; }
 
 
 # -------------------------------------------------------------------
@@ -41,14 +45,14 @@ alias back='cd $OLDPWD'
 alias ls='ls --color=auto'
 alias sl='ls'
 alias ll='ls -lA -h'
-alias l='ls -1'
+alias l='ls -1A'
 alias lh='ls -d .*'
 alias lsd='ls -aFhlG'
 alias llh='ll -d .*'
 alias llt='ll -tr'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
-alias lsdu='du -scxh * | sort -hr' #sorted by size
-alias filecount='find . -type f | wc -l' # number of files (not directories)
+alias lsdu='du -scxh * | sort -hr'  # sorted by size
+alias filecount='find . -type f | wc -l'  # number of files (not directories)
 alias dusch='du -sch'
 alias dfh='df -h'
 
@@ -60,6 +64,7 @@ alias dfh='df -h'
 alias g='git'
 alias ga='git add'
 alias gap='git add --patch'
+alias gau='git add --update'
 
 alias gb='git branch'
 alias gba='git branch --all'
@@ -134,9 +139,11 @@ alias gtam='git tag --annotate -m'
 alias gtc='git tag --contains'
 alias gtl='git tag --list'
 
-# curiosities 
+# curiosities
 # gu shows a list of all developers and the number of commits they've made
 alias gu="git shortlog | grep -E '^[^ ]'"
+# kernel-style commit ref
+alias gref="git show --format='format:%h (\"%s\")' --no-patch"
 
 
 # -------------------------------------------------------------------
@@ -149,7 +156,6 @@ alias svn='echo "use git-svn !!" ; #'
 # dev
 #
 alias shfmt='shfmt -p -ci'
-
 alias gdb='gdb -q'
 
 # zig
@@ -174,7 +180,10 @@ alias lxi='lxc image list'
 # -------------------------------------------------------------------
 # Docker
 # -------------------------------------------------------------------
+#alias docker=podman  # :-)
+alias d='docker'
 alias dps='docker ps'
+alias dpsa='docker ps -a'
 alias dcls='docker container ls'
 alias dils='docker image ls'
 alias dr='docker run'
@@ -199,25 +208,26 @@ alias myip='curl -L ifconfig.co'
 alias ping1='ping -c 4 1.1.1.1'
 alias ping8='ping -c 4 8.8.8.8'
 alias ping9='ping -c 4 9.9.9.9'
+netscan() { nmap -sn -oG - -v "$1" | grep -v 'Down$' ; }
 
 
 # -------------------------------------------------------------------
 # system helpers
 # -------------------------------------------------------------------
-alias priv='doas'
-alias reboot='priv reboot'
-alias poweroff='priv poweroff'
+command -v doas >/dev/null && alias sudo='doas'
+alias reboot='sudo reboot'
+alias poweroff='sudo poweroff'
 alias watchThermal='watch -t -d -n 1 cat /sys/devices/virtual/thermal/thermal_zone*/temp'
 
 
 # -------------------------------------------------------------------
 # XBPS
 # -------------------------------------------------------------------
-alias xi='priv xi'
+#alias xi='sudo xi'
 alias xup='xi -Su'
-alias xr='priv xbps-remove -R'
-alias xq='xbps-query' #attention: shadows xtools/xq
-alias xx='nice -n 10 ./xbps-src'
+alias xr='sudo xbps-remove -R'
+alias xq='xbps-query'  # attention: shadows xtools/xq
+alias xx='nice -n 10 ./xbps-src '
 
 # list packages on the system that have updates upstream
 alias listOutdated='curl -L -s https://alpha.de.repo.voidlinux.org/void-updates/void-updates.txt | grep -i ".* .*->.*" | cut -d " " -f1 | sort | uniq > /tmp/updates && xpkg | sort > /tmp/localpkgs && comm -1 -2 /tmp/updates /tmp/localpkgs | sort'
@@ -238,18 +248,27 @@ alias bw='binwalk'
 # -------------------------------------------------------------------
 alias tmux='tmux -u'
 alias tmuxinit='tmux a 2>/dev/null || tmux'
-command -v nvim >/dev/null && alias vim='nvim'
-alias e='vim'
-alias v='vim'
-alias vi='vim'
-alias vmi='vim'
-alias svim='priv vim'
+alias e='$EDITOR'
+alias v='$EDITOR'
+alias vi='$EDITOR'
+alias vmi='$EDITOR'
+alias vim='$EDITOR'
+alias svim='sudo $EDITOR'
 alias torsocks='torsocks --isolate'
 alias md5='md5sum'
 alias sha='sha256sum'
 alias sha256='sha256sum'
 alias sha512='sha512sum'
 wttr() { curl "https://wttr.in/$1"; }
+alias bb='busybox'
+alias tb='toybox'
+if command -v ncal >/dev/null ; then
+	echo 1
+	alias cal='ncal -bMw'
+elif command -v cal >/dev/null ; then
+	alias cal='cal -mw'
+fi
+
 
 # run an iso quickly with "qemu -cdrom <iso>"
 alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -cpu host -usb -rtc base=localtime -boot order=d '
@@ -264,3 +283,8 @@ alias pdf='zathura'
 # Debian fixes
 #
 command -v fdfind >/dev/null && alias fd='fdfind'
+alias ai='sudo apt install --no-install-recommends'
+alias alocate='apt-file search --regexp'
+
+
+# vim: syntax=sh
