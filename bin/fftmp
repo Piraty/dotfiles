@@ -1,9 +1,19 @@
 #!/bin/sh
 # fftmp - start firefox with new profile from tmpfs
 
-profile="$(mktemp -d)"
+set -eu
 
+RUNDIR="/run/user/$(id -u)"
+if [ -d "$RUNDIR" ] ; then
+	tempdir="$RUNDIR"
+else
+	tempdir=/tmp
+fi
+
+profile="$(mktemp -p "$tempdir" -d fftmp.XXXXXXX)"
 trap "rm -rf $profile" EXIT QUIT INT
+
+chmod 700 "$profile"
 
 firefox \
 	--no-remote \

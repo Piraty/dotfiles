@@ -227,7 +227,7 @@ alias watchThermal='watch -t -d -n 1 cat /sys/devices/virtual/thermal/thermal_zo
 alias xup='xi -Su'
 alias xr='sudo xbps-remove -R'
 alias xq='xbps-query'  # attention: shadows xtools/xq
-alias xx='nice -n 10 ./xbps-src '
+alias xx='nice -n 10 $(xdistdir)/xbps-src '
 
 # list packages on the system that have updates upstream
 alias listOutdated='curl -L -s https://alpha.de.repo.voidlinux.org/void-updates/void-updates.txt | grep -i ".* .*->.*" | cut -d " " -f1 | sort | uniq > /tmp/updates && xpkg | sort > /tmp/localpkgs && comm -1 -2 /tmp/updates /tmp/localpkgs | sort'

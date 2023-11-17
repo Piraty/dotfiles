@@ -1,7 +1,7 @@
 # http://ezprompt.net/
 
 # get current branch in git repo
-function parse_git_branch() {
+parse_git_branch() {
 	BRANCH="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
 	if [ -n "$BRANCH" ] ; then
 		STAT="$(parse_git_dirty)"
@@ -12,7 +12,7 @@ function parse_git_branch() {
 }
 
 # get current status of git repo
-function parse_git_dirty {
+parse_git_dirty {
 	status="$(git status 2>&1)"
 	dirty=$(printf '%s' "$status" | grep "modified:" &> /dev/null; echo "$?")
 	untracked=$(printf '%s' "$status" | grep "Untracked files" &> /dev/null; echo "$?")

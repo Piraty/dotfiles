@@ -1,4 +1,5 @@
 #!/bin/sh
+# profile
 
 : ${BROWSER:=$(command -v firefox 2>/dev/null)}
 : ${BROWSER:=$(command -v qutebrowser 2>/dev/null)}
@@ -23,6 +24,8 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 export ENV="$HOME/.shrc"
 
+export GOPATH="$HOME/go"
+
 export HOSTALIASES="$HOME/hosts"
 
 # application specific settings
@@ -30,5 +33,7 @@ export LESS='--ignore-case --RAW-CONTROL-CHARS'
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 export CLICOLOR=1
 
-PATH="$HOME/bin/:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+[ -d "/usr/lib/ccache/bin" ] && PATH="/usr/lib/ccache/bin/:$PATH"
+PATH="$HOME/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 export PATH
