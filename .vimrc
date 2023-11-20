@@ -1,7 +1,8 @@
 set termguicolors
 set number
 set relativenumber
-colo desert
+" colo desert
+colo evening
 
 " Basic settings
 set mouse=
@@ -11,8 +12,9 @@ set autoread
 set smarttab
 set cursorline
 set colorcolumn=80
+set scrolloff=5
 syntax enable
-filetype indent on
+filetype plugin indent on
 
 " ignore
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db,*.o,*.a
@@ -23,6 +25,8 @@ set undofile                " So is persistent undo ...
 set undolevels=1000         " Maximum number of changes that can be undone
 
 " search
+set incsearch
+set hlsearch
 set smartcase               " search casesensitive if pattern contains uppercase chars
 set ignorecase              " overwritten by smartcase if it contains uppercase chars
 
