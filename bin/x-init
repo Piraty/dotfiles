@@ -16,9 +16,13 @@ set_keyboard() {
 	# key mapping
 	setxkbmap 'us(altgr-intl)'
 	#numlockx
-	xmodmap ~/.Xmodmap
 
-	killall -q xcape
+	# skip CAPS remap as it interferes with Lily58 layout
+	[ "$(fd 'product$' /sys -X grep Lily58 | wc -l)" -gt 0 ] && return
+
+	# CAPS tap-hold navigation layer
+	xmodmap ~/.Xmodmap
+	pkill xcape
 	xcape -e 'Mode_switch=Escape' #make single CAPS tap act like ESC
 }
 
