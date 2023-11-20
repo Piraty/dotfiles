@@ -5,16 +5,20 @@
 based on: https://news.ycombinator.com/item?id=11071754
 
 	# clone + setup
-	USER=you
-	REPO=https://github.com/${USER:-piraty}/dotfiles.git
+	GITHUB_USER="<CHANGEME>"
+	REPO=https://github.com/${GITHUB_USER:-piraty}/dotfiles.git
 	git clone --separate-git-dir=$HOME/.dotfiles.git $REPO $HOME/myconf-tmp
 	rm -r $HOME/myconf-tmp/
 	alias dotfiles='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 	dotfiles config status.showUntrackedFiles no
 
 	# inspect conflicts + checkout
+    cd $HOME
 	dotfiles status # check for modified files and move them
 	dotfiles checkout $HOME
+
+    # install files to non-static locations
+    . $HOME/install.sh
 
 ## Dependencies
 
