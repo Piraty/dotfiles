@@ -12,7 +12,7 @@ parse_git_branch() {
 }
 
 # get current status of git repo
-parse_git_dirty {
+parse_git_dirty() {
 	status="$(git status 2>&1)"
 	dirty=$(printf '%s' "$status" | grep "modified:" &> /dev/null; echo "$?")
 	untracked=$(printf '%s' "$status" | grep "Untracked files" &> /dev/null; echo "$?")
