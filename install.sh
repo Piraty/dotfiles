@@ -32,6 +32,22 @@ nvim() {
 
 }
 
+nvim_dap() {
+	_plugindir="$HOME/.local/share/nvim/site/pack/plugins/start"
+	mkdir -p "$_plugindir"
+
+	# these should be tracked submodules in the future
+	_github="https://github.com/"
+	for repo in \
+		"$_github/mfussenegger/nvim-dap.git" \
+		"$_github/leoluz/nvim-dap-go.git" \
+		"$_github/rcarriga/nvim-dap-ui.git" \
+		"$_github/theHamsta/nvim-dap-virtual-text.git" \
+		; do
+		git -C "$_plugindir" clone --origin=upstream "$repo"
+	done
+}
+
 lsp() {
 	pipx install --include-deps python-lsp-server
 	pipx inject python-lsp-server \
@@ -47,4 +63,5 @@ cd "$HOME"
 
 firefox
 nvim
+nvim_dap
 lsp

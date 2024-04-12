@@ -168,6 +168,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
+
+local dap= require("dap")
+local dap_ui_widgets= require("dap.ui.widgets")
+
+local dapui = require("dapui")
+dapui.setup()
+
+local dap_virtual_text = require("nvim-dap-virtual-text")
+dap_virtual_text.setup()
+
+local dap_go = require("dap-go")
+dap_go.setup {}
+
+vim.keymap.set('n', '<space>db', "<cmd>DapToggleBreakpoint<CR>")
+vim.keymap.set('n', '<space>dc', "<cmd>DapContinue<CR>")
+vim.keymap.set('n', '<space>ds', "<cmd>DapStepInto<CR>")
+vim.keymap.set('n', '<space>dn', "<cmd>DapStepOver<CR>")
+vim.keymap.set('n', '<space>do', "<cmd>DapStepOut<CR>")
+vim.keymap.set('n', '<space>dr', "<cmd>DapToggleRepl<CR>")
+vim.keymap.set('n', '<space>dT', "<cmd>DapTerminate<CR>")
+vim.keymap.set('n', '<space>dR', function() dap.run_last() end)
+
+vim.keymap.set('n', '<space>du', function() dapui.toggle({reset=true}) end)
+vim.keymap.set({ 'n', 'v' }, '<space>de', function() dapui.eval() end)
+vim.keymap.set('n', '<space>dv', function() dap_ui_widgets.hover() end)
+
+
 ---- keymaps
 
 -- yank to clipboard
