@@ -24,7 +24,9 @@ nvim() {
 	for repo in \
 		"$_github/neovim/nvim-lspconfig.git" \
 		"$_github/tpope/vim-commentary.git" \
-		"$_github/vim-autoformat/vim-autoformat.git"; do
+		"$_github/tpope/vim-unimpaired.git" \
+		"$_github/tpope/vim-surround.git" \
+		; do
 		git -C "$_plugindir" clone --origin=upstream "$repo"
 	done
 
@@ -34,10 +36,11 @@ lsp() {
 	pipx install --include-deps python-lsp-server
 	pipx inject python-lsp-server \
 		pylsp-mypy \
-		pyls-isort \
+		python-lsp-isort \
 		python-lsp-black \
 		pyls-memestra \
-		pylsp-rope
+		pylsp-rope \
+		pylint pylint-pytest
 }
 
 cd "$HOME"

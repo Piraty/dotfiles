@@ -83,20 +83,41 @@ lspconfig.pylsp.setup {
   settings = {
     pylsp = {
       plugins = {
+		autopep8 = {
+			enabled = false
+		},
 		black = {
 			enabled = true
 		},
 		flake8 = {
-			enabled = true
-		},
-		pylint = {
-			enabled = true
+			enabled = false
 		},
 		isort = {
+			enabled = true,
+			profile = "black",
+			atomic = true
+		},
+		mccabe = {
 			enabled = true
+		},
+		pycodestyle = {
+			enabled = false
+		},
+		pylint = {
+			enabled = true,
+			args = {
+				-- mimic black
+				"--max-line-length 88",
+				-- pylint shall look into venv as well, duh
+				"--init-hook='import pylint_venv;pylint_venv.inithook(force_venv_activation=True)'"
+			}
 		},
 		rope = {
 			enabled = true
+		},
+		pylsp_mypy = {
+			enabled = true,
+			dmypy = true,
 		},
       }
     }
@@ -104,6 +125,8 @@ lspconfig.pylsp.setup {
 }
 
 lspconfig.tsserver.setup {}
+
+--vim.lsp.set_log_level("debug")
 
 
 -- global mappings
