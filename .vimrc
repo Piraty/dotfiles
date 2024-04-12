@@ -12,17 +12,18 @@ set autoread
 set smarttab
 set cursorline
 set colorcolumn=80
-set scrolloff=5
+set scrolloff=8
 syntax enable
 filetype plugin indent on
 
 " ignore
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db,*.o,*.a
 
-" histroy/undo
+" history/undo/swap
 set history=1000            " store a ton of history (default is 20)
 set undofile                " So is persistent undo ...
 set undolevels=1000         " Maximum number of changes that can be undone
+set updatetime=100          " When to write swapfile to disk
 
 " search
 set incsearch
@@ -44,7 +45,8 @@ command W call WriteCreatingDirs()
 
 command Cppcheck execute ':silent ! cppcheck --enable=all %'
 command Shellcheck execute ':! shellcheck -x %'
-command Shfmt execute ':silent ! shfmt -w -ci %'
+command Shfmt execute ':! shfmt -w -ci %'
+command Xgensum execute ':silent ! xgensum -i %'
 
 " void-packages template file
 autocmd BufNewFile,BufRead template set ft=sh sts=0 sw=0 noet
@@ -137,7 +139,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     vim.keymap.set('n', '<space>df', vim.diagnostic.goto_next, opts)
     vim.keymap.set('n', '<space>dp', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
+    vim.keymap.set('n', '<space>f', function()
+		vim.lsp.buf.format { async = true }
+	end, opts)
   end
 })
 EOF
