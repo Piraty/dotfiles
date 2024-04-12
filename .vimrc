@@ -167,4 +167,28 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end, opts)
   end
 })
+
+---- keymaps
+
+-- yank to clipboard
+vim.keymap.set('n', "<space>y", "\"+y")
+vim.keymap.set('n', "<space>yy", "\"+yy")
+vim.keymap.set('v', "<space>y", "\"+y")
+vim.keymap.set('n', "<space>Y", "\"+Y")
+
+-- vimprovement: center after possibly large jumps
+vim.keymap.set('n', "<C-u>", "<C-u>zz")
+vim.keymap.set('n', "<C-d>", "<C-d>zz")
+
+-- explore / netrw
+vim.keymap.set('n', "<space>e", ":Hex<CR>")
+vim.keymap.set('n', "<space>E", ":Vex!<CR>")
+
+-- split movement
+vim.keymap.set('n', "<space>w", "<C-w>")
+
+-- arglist
+vim.keymap.set('n', "<space>n", ":next<CR>")
+vim.keymap.set('n', "<space>p", ":previous<CR>")
+
 EOF
