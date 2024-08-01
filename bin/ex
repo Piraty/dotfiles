@@ -17,6 +17,8 @@ done
 : "${TAR:=false}"
 _tar() { $TAR -x -m -f "$@"; }
 
+[ -n "${EX_VERBOSE}" ] && set -x
+
 for f; do
 	# determine decompression algo by file extension
 	case "$f" in
@@ -57,6 +59,9 @@ for f; do
 			;;
 		*.iso)
 			xorriso -osirrox on -indev "$f" -extract / "$(pwd)"
+			;;
+		*.jar)
+			unzip "$f"
 			;;
 		*.rar)
 			unrar "$f"
