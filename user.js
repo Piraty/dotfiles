@@ -48,6 +48,7 @@ user_pref('extensions.getAddons.cache.enabled', false);
 
 user_pref('dom.webnotifications.enabled', false);
 user_pref('dom.webnotifications.serviceworker.enabled', false);
+user_pref("dom.private-attribution.submission.enabled", false); // Disable Privacy-Preserving Attribution
 
 user_pref('browser.contentHandlers.types.0.title', '');
 user_pref('browser.contentHandlers.types.0.type', '');
