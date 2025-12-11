@@ -85,6 +85,9 @@ alias gcps='git cherry-pick --skip'
 
 alias gcl='git clone'
 
+alias gg='git grep'
+
+alias gco='git commit'
 alias gm='git commit -m'
 alias gma='git commit -am'
 alias gca='git commit --amend'
@@ -105,7 +108,10 @@ alias glf='git log --follow'
 alias glo='git log --oneline'
 alias glp='git log --patch'
 alias glg='git log --graph'
-alias glga='git log --graph --all --oneline'
+alias glgo='git log --graph --oneline'
+alias glgoa='git log --graph --oneline --all'
+alias glga='git log --graph --all'
+alias glgg='git log --grep'
 alias glpretty="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gls='git log --stat'
 alias glsig='git log --show-signature'
@@ -253,6 +259,7 @@ alias bw='binwalk'
 # -------------------------------------------------------------------
 # misc
 # -------------------------------------------------------------------
+alias which='command -v'
 alias tmux='tmux -u'
 alias tmuxinit='tmux a 2>/dev/null || tmux'
 alias e='$EDITOR'
@@ -266,6 +273,7 @@ alias md5='md5sum'
 alias sha='sha256sum'
 alias sha256='sha256sum'
 alias sha512='sha512sum'
+twoman() { sed -rn '1{/^[^#][^!]/q;d;};/^$|^[^#]/q;s/^# //p' "$1"; }
 wttr() { curl "https://wttr.in/$1"; }
 alias bb='busybox'
 alias tb='toybox'
@@ -287,6 +295,8 @@ alias qemu='qemu-system-x86_64 -m 1024 -enable-kvm -machine q35,accel=kvm -cpu h
 # GUI
 # -------------------------------------------------------------------
 alias pdf='zathura'
+xc() { xclip -selection clipboard ; }
+xp() { xclip -selection clipboard -o ; }
 
 #
 # Debian fixes
@@ -295,5 +305,7 @@ command -v fdfind >/dev/null && alias fd='fdfind'
 alias ai='sudo apt install --no-install-recommends'
 alias alocate='apt-file search --regexp'
 
+
+alias mpv='mpv --ytdl-raw-options=prefer-free-formats= --ytdl-format="best[height<=2560]"'
 
 # vim: syntax=sh
