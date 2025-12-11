@@ -184,7 +184,7 @@ bindsym $sup+F5 exec --no-startup-id toggle_touchpad
 bindsym $sup+F6 exec --no-startup-id toggle_dpms
 
 # lock screen
-set $Locker "sleep 0.25 ; xset dpms force off ; sleep 0.35 && slock && sleep 0.25"
+set $Locker sh -c 'i3lock -c 101010 && sleep 0.5 && xset dpms force off'
 bindsym $ctrl+$mod+l exec --no-startup-id $Locker
 
 # scratchpads
