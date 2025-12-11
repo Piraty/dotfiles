@@ -198,19 +198,22 @@ bindsym $mod+Shift+Return [title="dropdown-terminal"] scratchpad show; [title="d
 exec_always --no-startup-id $term-xfce4 -T 'dropdown-terminal'
 
 bindsym $mod+Shift+p [title="dropdown-py3"] scratchpad show; [title="dropdown-py3"] move position center
-exec_always --no-startup-id $term-st -T 'dropdown-py3' -e python3
+exec_always --no-startup-id $term-xfce4 -T 'dropdown-py3' -e python3
 
 bindsym $mod+Shift+o [title="dropdown-octave"] scratchpad show; [title="dropdown-octave"] move position center
-exec_always --no-startup-id $term-st -T 'dropdown-octave' -e octave
+exec_always --no-startup-id $term-xfce4 -T 'dropdown-octave' -e octave
+
+bindsym $mod+Shift+n [title="dropdown-nodejs"] scratchpad show; [title="dropdown-nodejs"] move position center
+exec_always --no-startup-id $term-xfce4 -T 'dropdown-nodejs' -e nodejs
 
 bindsym $mod+Shift+i [title="dropdown-R"] scratchpad show; [title="dropdown-R"] move position center
-exec_always --no-startup-id $term-st -T 'dropdown-R' -e R
+exec_always --no-startup-id $term-xfce4 -T 'dropdown-R' -e R
 
 # bind some launchers
 bindsym $mod+p exec passmenu
 #bindsym $mod+Shift+p exec $term "python3"
 #bindsym $mod+Shift+o exec $term "octave"
-#bindsym $mod+Shirt+i exec $term "R"
+#bindsym $mod+Shift+i exec $term "R"
 bindsym $mod+t exec Thunar
 
 ## start some apps
