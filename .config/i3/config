@@ -159,16 +159,16 @@ bar {
 	i3bar_command i3bar -t
 }
 
-# i3-gaps
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 smart_borders on
-smart_gaps on
-gaps inner 10
-gaps outer 3
 
-# resize gaps on demand
-bindsym $mod+n gaps inner all set  0; gaps outer all set 0
-bindsym $mod+m gaps inner all set 10; gaps outer all set 3
+# # i3-gaps
+# smart_gaps on
+# gaps inner 10
+# gaps outer 3
+# # resize gaps on demand
+# bindsym $mod+n gaps inner all set  0; gaps outer all set 0
+# bindsym $mod+m gaps inner all set 10; gaps outer all set 3
 
 # bind some controlkeys
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 3dB+ unmute
